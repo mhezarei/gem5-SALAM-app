@@ -34,7 +34,7 @@ COMMON_PATH = $(M5_PATH)/benchmarks/common/
 
 include $(COMMON_PATH)Makefile
 
-OBJS         = boot.o $(COMMON_PATH)syscalls.o main.o isr.o
+OBJS         = boot.o $(COMMON_PATH)syscalls.o data.o main.o isr.o
 
 main.elf: $(OBJS) $(LNK_SCRIPT) Makefile
 	@echo $(PWD)

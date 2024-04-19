@@ -13,7 +13,7 @@ sw/                            # host (e.g., x86) codebase
 config.yml                     # accelerator configuration
 defines.h                      # top-level definitions
 run.sh                         # running script
-<app name>_clstr_hw_defines.h  # holds the addresses according to config.yml
+<app name>_clstr_hw_defines.h  # holds the device addresses (generated according to config.yml)
 ```
 
 ---
@@ -21,7 +21,7 @@ run.sh                         # running script
 ### Prerequisites
 
 1. Clone the [custom `gem5-SALAM` repo](https://github.com/mhezarei/gem5-SALAM) (note that the normal version doesn't support remote applications).
-2. Build `gem5-SALAM`
+2. *Prepare yourself for the Tsunami of issues and* Build `gem5-SALAM`.
 3. Set `$M5_PATH` to `/path/to/gem5-SALAM`.
 4. Set `$M5_APP_PATH` to `/path/to/gem5-SALAM-app` (this repo).
 
