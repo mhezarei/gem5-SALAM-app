@@ -24,13 +24,12 @@ acc_cluster:
     - Name: wm
       PIOSize: 4096
       PIOMaster: LocalBus
-      Debug: True
+      Debug: False
     - Var:
       - Name: spm_wm
         Type: SPM
-        Size: 2048
+        Size: 1024
         Ports: 10
-        Connections: pe:10
     - Var:
       - Name: stream_wm_calc
         Type: Stream
@@ -54,7 +53,7 @@ acc_cluster:
       InterruptNum: 68
       PIOMaster: LocalBus
       LocalSlaves: LocalBus
-      Debug: True
+      Debug: False
     - Var:
       - Name: stream_calc_wm
         Type: Stream

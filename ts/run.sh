@@ -2,7 +2,7 @@
 
 set -e
 
-FLAGS="HWACC,WindowManager,Window,StreamBuffer"
+FLAGS="HWACC,WindowManager"
 BENCH="ts"
 DEBUG="false"
 PRINT_TO_FILE="false"
@@ -83,6 +83,7 @@ RUN_SCRIPT="$BINARY \
 			--accbench=$BENCH \
 			$CACHE_OPTS"
 
+python3 generators/pe_generator.py > hw/pe.c
 (clear ; cd $M5_APP_PATH/$BENCH && rm -f sw/main.elf sw/main.o ; make)
 ${M5_PATH}/tools/SALAM-Configurator/systembuilder.py --sys-name $BENCH --bench-path "$M5_APP_PATH/$BENCH"
 

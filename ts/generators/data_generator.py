@@ -1,12 +1,37 @@
 import random
 import math
+import struct
+import numpy as np
 
 
 random.seed(0)
-NUM_VALUES = 512
-VALUE_RANGE = (-1000, 1000)
+
 B = 8
 F = 4
+NUM_VALUES = 512
+# B = 64
+# F = 16
+# NUM_VALUES = 2**16 * B
+# B = 64
+# F = 16
+# NUM_VALUES = 2**20 * B
+
+
+def to_bin(arr, fn: str):
+    vals = np.array(arr).flatten().tolist()
+    vals = [int(x, 16) if "0x" in str(x) else float(str(x)) for x in vals]
+
+    packing_str = (
+        f"3d{F}Q" * (len(vals) // (3 + F)) if "cores" in fn else "d" * len(vals)
+    )
+    s = struct.pack(packing_str, *vals)
+
+    f = open(fn, "wb")
+    f.write(s)
+    f.close()
+
+
+VALUE_RANGE = (-1000, 1000)
 NUM_LEVELS = int(math.log(NUM_VALUES / B, F))
 
 CORES_BASE_ADDR = 0x80C00000
@@ -29,6 +54,7 @@ for i in range(NUM_LEVELS):
     num_cores = F**i
     cum_num_cores += num_cores
     next_level_base_addr = CORES_BASE_ADDR + cum_num_cores * CORE_SIZE
+    print(hex(next_level_base_addr))
     for j in range(num_cores):
         per_node_range = NUM_VALUES / num_cores
         range_start, range_end = j * per_node_range, (j + 1) * per_node_range - 1
@@ -44,29 +70,6 @@ for i in range(NUM_LEVELS):
         cores.append((range_start, range_end, stat, *pointers))
 
 
-s = f"""#include "data.h"
-
-"""
-print(s, flush=True)
-
-s = f"""const Core CORES[NUM_CORES] =
-
-"""
-print(s, flush=True)
-s = (
-    str(cores)
-    .replace("(", "{")
-    .replace(")", "}")
-    .replace("[", "{")
-    .replace("]", "};")
-    .replace("'", "")
-)
-print(s, flush=True)
-print("", flush=True)
-
-s = f"""const Point VALUES[NUM_VALUES] =
-
-"""
-print(s, flush=True)
-s = str(values).replace("(", "{").replace(")", "}").replace("[", "{").replace("]", "};")
-print(s, flush=True)
+suffix = "8KB"
+to_bin(cores, f"cores_{suffix}.bin")
+to_bin(values, f"values_{suffix}.bin")
