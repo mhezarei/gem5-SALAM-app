@@ -14,7 +14,7 @@ acc_cluster:
     - Name: top
       IrPath: hw/top.ll
       ConfigPath: hw/top.ini
-      PIOSize: 4096
+      PIOSize: 128
       InterruptNum: 68
       PIOMaster: LocalBus
       LocalSlaves: LocalBus
@@ -22,67 +22,2017 @@ acc_cluster:
 
   - WindowManager:
     - Name: wm
-      PIOSize: 4096
+      PIOSize: 128
       PIOMaster: LocalBus
-      Debug: False
+      Debug: True
+      MemoryPorts: 64
     - Var:
       - Name: spm_wm
         Type: SPM
-        Size: 1024
+        Size: 128
         Ports: 10
     - Var:
-      - Name: stream_wm_calc
+      - Name: stream_wm_calc1
         Type: Stream
         StreamSize: 8
         BufferSize: 80
         InCon: wm
-        OutCon: calc
+        OutCon: calc1
     - Var:
-      - Name: stream_wm_pe
+      - Name: stream_wm_calc2
         Type: Stream
         StreamSize: 8
-        BufferSize: 10
+        BufferSize: 80
         InCon: wm
-        OutCon: pe
-
+        OutCon: calc2
+    - Var:
+      - Name: stream_wm_calc3
+        Type: Stream
+        StreamSize: 8
+        BufferSize: 80
+        InCon: wm
+        OutCon: calc3
+    - Var:
+      - Name: stream_wm_calc4
+        Type: Stream
+        StreamSize: 8
+        BufferSize: 80
+        InCon: wm
+        OutCon: calc4
+    - Var:
+      - Name: stream_wm_calc5
+        Type: Stream
+        StreamSize: 8
+        BufferSize: 80
+        InCon: wm
+        OutCon: calc5
+    - Var:
+      - Name: stream_wm_calc6
+        Type: Stream
+        StreamSize: 8
+        BufferSize: 80
+        InCon: wm
+        OutCon: calc6
+    - Var:
+      - Name: stream_wm_calc7
+        Type: Stream
+        StreamSize: 8
+        BufferSize: 80
+        InCon: wm
+        OutCon: calc7
+    - Var:
+      - Name: stream_wm_calc8
+        Type: Stream
+        StreamSize: 8
+        BufferSize: 80
+        InCon: wm
+        OutCon: calc8
+    - Var:
+      - Name: stream_wm_calc9
+        Type: Stream
+        StreamSize: 8
+        BufferSize: 80
+        InCon: wm
+        OutCon: calc9
+    - Var:
+      - Name: stream_wm_calc10
+        Type: Stream
+        StreamSize: 8
+        BufferSize: 80
+        InCon: wm
+        OutCon: calc10
+    - Var:
+      - Name: stream_wm_calc11
+        Type: Stream
+        StreamSize: 8
+        BufferSize: 80
+        InCon: wm
+        OutCon: calc11
+    - Var:
+      - Name: stream_wm_calc12
+        Type: Stream
+        StreamSize: 8
+        BufferSize: 80
+        InCon: wm
+        OutCon: calc12
+    - Var:
+      - Name: stream_wm_calc13
+        Type: Stream
+        StreamSize: 8
+        BufferSize: 80
+        InCon: wm
+        OutCon: calc13
+    - Var:
+      - Name: stream_wm_calc14
+        Type: Stream
+        StreamSize: 8
+        BufferSize: 80
+        InCon: wm
+        OutCon: calc14
+    - Var:
+      - Name: stream_wm_calc15
+        Type: Stream
+        StreamSize: 8
+        BufferSize: 80
+        InCon: wm
+        OutCon: calc15
+    - Var:
+      - Name: stream_wm_calc16
+        Type: Stream
+        StreamSize: 8
+        BufferSize: 80
+        InCon: wm
+        OutCon: calc16
+    - Var:
+      - Name: stream_wm_calc17
+        Type: Stream
+        StreamSize: 8
+        BufferSize: 80
+        InCon: wm
+        OutCon: calc17
+    - Var:
+      - Name: stream_wm_calc18
+        Type: Stream
+        StreamSize: 8
+        BufferSize: 80
+        InCon: wm
+        OutCon: calc18
+    - Var:
+      - Name: stream_wm_calc19
+        Type: Stream
+        StreamSize: 8
+        BufferSize: 80
+        InCon: wm
+        OutCon: calc19
+    - Var:
+      - Name: stream_wm_calc20
+        Type: Stream
+        StreamSize: 8
+        BufferSize: 80
+        InCon: wm
+        OutCon: calc20
+    - Var:
+      - Name: stream_wm_calc21
+        Type: Stream
+        StreamSize: 8
+        BufferSize: 80
+        InCon: wm
+        OutCon: calc21
+    - Var:
+      - Name: stream_wm_calc22
+        Type: Stream
+        StreamSize: 8
+        BufferSize: 80
+        InCon: wm
+        OutCon: calc22
+    - Var:
+      - Name: stream_wm_calc23
+        Type: Stream
+        StreamSize: 8
+        BufferSize: 80
+        InCon: wm
+        OutCon: calc23
+    - Var:
+      - Name: stream_wm_calc24
+        Type: Stream
+        StreamSize: 8
+        BufferSize: 80
+        InCon: wm
+        OutCon: calc24
+    - Var:
+      - Name: stream_wm_calc25
+        Type: Stream
+        StreamSize: 8
+        BufferSize: 80
+        InCon: wm
+        OutCon: calc25
+    - Var:
+      - Name: stream_wm_calc26
+        Type: Stream
+        StreamSize: 8
+        BufferSize: 80
+        InCon: wm
+        OutCon: calc26
+    - Var:
+      - Name: stream_wm_calc27
+        Type: Stream
+        StreamSize: 8
+        BufferSize: 80
+        InCon: wm
+        OutCon: calc27
+    - Var:
+      - Name: stream_wm_calc28
+        Type: Stream
+        StreamSize: 8
+        BufferSize: 80
+        InCon: wm
+        OutCon: calc28
+    - Var:
+      - Name: stream_wm_calc29
+        Type: Stream
+        StreamSize: 8
+        BufferSize: 80
+        InCon: wm
+        OutCon: calc29
+    - Var:
+      - Name: stream_wm_calc30
+        Type: Stream
+        StreamSize: 8
+        BufferSize: 80
+        InCon: wm
+        OutCon: calc30
+    - Var:
+      - Name: stream_wm_calc31
+        Type: Stream
+        StreamSize: 8
+        BufferSize: 80
+        InCon: wm
+        OutCon: calc31
+    - Var:
+      - Name: stream_wm_calc32
+        Type: Stream
+        StreamSize: 8
+        BufferSize: 80
+        InCon: wm
+        OutCon: calc32
+    - Var:
+      - Name: stream_wm_calc33
+        Type: Stream
+        StreamSize: 8
+        BufferSize: 80
+        InCon: wm
+        OutCon: calc33
+    - Var:
+      - Name: stream_wm_calc34
+        Type: Stream
+        StreamSize: 8
+        BufferSize: 80
+        InCon: wm
+        OutCon: calc34
+    - Var:
+      - Name: stream_wm_calc35
+        Type: Stream
+        StreamSize: 8
+        BufferSize: 80
+        InCon: wm
+        OutCon: calc35
+    - Var:
+      - Name: stream_wm_calc36
+        Type: Stream
+        StreamSize: 8
+        BufferSize: 80
+        InCon: wm
+        OutCon: calc36
+    - Var:
+      - Name: stream_wm_calc37
+        Type: Stream
+        StreamSize: 8
+        BufferSize: 80
+        InCon: wm
+        OutCon: calc37
+    - Var:
+      - Name: stream_wm_calc38
+        Type: Stream
+        StreamSize: 8
+        BufferSize: 80
+        InCon: wm
+        OutCon: calc38
+    - Var:
+      - Name: stream_wm_calc39
+        Type: Stream
+        StreamSize: 8
+        BufferSize: 80
+        InCon: wm
+        OutCon: calc39
+    - Var:
+      - Name: stream_wm_calc40
+        Type: Stream
+        StreamSize: 8
+        BufferSize: 80
+        InCon: wm
+        OutCon: calc40
+    - Var:
+      - Name: stream_wm_calc41
+        Type: Stream
+        StreamSize: 8
+        BufferSize: 80
+        InCon: wm
+        OutCon: calc41
+    - Var:
+      - Name: stream_wm_calc42
+        Type: Stream
+        StreamSize: 8
+        BufferSize: 80
+        InCon: wm
+        OutCon: calc42
+    - Var:
+      - Name: stream_wm_calc43
+        Type: Stream
+        StreamSize: 8
+        BufferSize: 80
+        InCon: wm
+        OutCon: calc43
+    - Var:
+      - Name: stream_wm_calc44
+        Type: Stream
+        StreamSize: 8
+        BufferSize: 80
+        InCon: wm
+        OutCon: calc44
+    - Var:
+      - Name: stream_wm_calc45
+        Type: Stream
+        StreamSize: 8
+        BufferSize: 80
+        InCon: wm
+        OutCon: calc45
+    - Var:
+      - Name: stream_wm_calc46
+        Type: Stream
+        StreamSize: 8
+        BufferSize: 80
+        InCon: wm
+        OutCon: calc46
+    - Var:
+      - Name: stream_wm_calc47
+        Type: Stream
+        StreamSize: 8
+        BufferSize: 80
+        InCon: wm
+        OutCon: calc47
+    - Var:
+      - Name: stream_wm_calc48
+        Type: Stream
+        StreamSize: 8
+        BufferSize: 80
+        InCon: wm
+        OutCon: calc48
+    - Var:
+      - Name: stream_wm_calc49
+        Type: Stream
+        StreamSize: 8
+        BufferSize: 80
+        InCon: wm
+        OutCon: calc49
+    - Var:
+      - Name: stream_wm_calc50
+        Type: Stream
+        StreamSize: 8
+        BufferSize: 80
+        InCon: wm
+        OutCon: calc50
+    - Var:
+      - Name: stream_wm_calc51
+        Type: Stream
+        StreamSize: 8
+        BufferSize: 80
+        InCon: wm
+        OutCon: calc51
+    - Var:
+      - Name: stream_wm_calc52
+        Type: Stream
+        StreamSize: 8
+        BufferSize: 80
+        InCon: wm
+        OutCon: calc52
+    - Var:
+      - Name: stream_wm_calc53
+        Type: Stream
+        StreamSize: 8
+        BufferSize: 80
+        InCon: wm
+        OutCon: calc53
+    - Var:
+      - Name: stream_wm_calc54
+        Type: Stream
+        StreamSize: 8
+        BufferSize: 80
+        InCon: wm
+        OutCon: calc54
+    - Var:
+      - Name: stream_wm_calc55
+        Type: Stream
+        StreamSize: 8
+        BufferSize: 80
+        InCon: wm
+        OutCon: calc55
+    - Var:
+      - Name: stream_wm_calc56
+        Type: Stream
+        StreamSize: 8
+        BufferSize: 80
+        InCon: wm
+        OutCon: calc56
+    - Var:
+      - Name: stream_wm_calc57
+        Type: Stream
+        StreamSize: 8
+        BufferSize: 80
+        InCon: wm
+        OutCon: calc57
+    - Var:
+      - Name: stream_wm_calc58
+        Type: Stream
+        StreamSize: 8
+        BufferSize: 80
+        InCon: wm
+        OutCon: calc58
+    - Var:
+      - Name: stream_wm_calc59
+        Type: Stream
+        StreamSize: 8
+        BufferSize: 80
+        InCon: wm
+        OutCon: calc59
+    - Var:
+      - Name: stream_wm_calc60
+        Type: Stream
+        StreamSize: 8
+        BufferSize: 80
+        InCon: wm
+        OutCon: calc60
+    - Var:
+      - Name: stream_wm_calc61
+        Type: Stream
+        StreamSize: 8
+        BufferSize: 80
+        InCon: wm
+        OutCon: calc61
+    - Var:
+      - Name: stream_wm_calc62
+        Type: Stream
+        StreamSize: 8
+        BufferSize: 80
+        InCon: wm
+        OutCon: calc62
+    - Var:
+      - Name: stream_wm_calc63
+        Type: Stream
+        StreamSize: 8
+        BufferSize: 80
+        InCon: wm
+        OutCon: calc63
+    - Var:
+      - Name: stream_wm_calc64
+        Type: Stream
+        StreamSize: 8
+        BufferSize: 80
+        InCon: wm
+        OutCon: calc64
+    - Var:
+      - Name: stream_wm_pe1
+        Type: Stream
+        StreamSize: 8
+        BufferSize: 80
+        InCon: wm
+        OutCon: pe1
+    - Var:
+      - Name: stream_wm_pe2
+        Type: Stream
+        StreamSize: 8
+        BufferSize: 80
+        InCon: wm
+        OutCon: pe2
+    - Var:
+      - Name: stream_wm_pe3
+        Type: Stream
+        StreamSize: 8
+        BufferSize: 80
+        InCon: wm
+        OutCon: pe3
+    - Var:
+      - Name: stream_wm_pe4
+        Type: Stream
+        StreamSize: 8
+        BufferSize: 80
+        InCon: wm
+        OutCon: pe4
+    - Var:
+      - Name: stream_wm_pe5
+        Type: Stream
+        StreamSize: 8
+        BufferSize: 80
+        InCon: wm
+        OutCon: pe5
+    - Var:
+      - Name: stream_wm_pe6
+        Type: Stream
+        StreamSize: 8
+        BufferSize: 80
+        InCon: wm
+        OutCon: pe6
+    - Var:
+      - Name: stream_wm_pe7
+        Type: Stream
+        StreamSize: 8
+        BufferSize: 80
+        InCon: wm
+        OutCon: pe7
+    - Var:
+      - Name: stream_wm_pe8
+        Type: Stream
+        StreamSize: 8
+        BufferSize: 80
+        InCon: wm
+        OutCon: pe8
+    - Var:
+      - Name: stream_wm_pe9
+        Type: Stream
+        StreamSize: 8
+        BufferSize: 80
+        InCon: wm
+        OutCon: pe9
+    - Var:
+      - Name: stream_wm_pe10
+        Type: Stream
+        StreamSize: 8
+        BufferSize: 80
+        InCon: wm
+        OutCon: pe10
+    - Var:
+      - Name: stream_wm_pe11
+        Type: Stream
+        StreamSize: 8
+        BufferSize: 80
+        InCon: wm
+        OutCon: pe11
+    - Var:
+      - Name: stream_wm_pe12
+        Type: Stream
+        StreamSize: 8
+        BufferSize: 80
+        InCon: wm
+        OutCon: pe12
+    - Var:
+      - Name: stream_wm_pe13
+        Type: Stream
+        StreamSize: 8
+        BufferSize: 80
+        InCon: wm
+        OutCon: pe13
+    - Var:
+      - Name: stream_wm_pe14
+        Type: Stream
+        StreamSize: 8
+        BufferSize: 80
+        InCon: wm
+        OutCon: pe14
+    - Var:
+      - Name: stream_wm_pe15
+        Type: Stream
+        StreamSize: 8
+        BufferSize: 80
+        InCon: wm
+        OutCon: pe15
+    - Var:
+      - Name: stream_wm_pe16
+        Type: Stream
+        StreamSize: 8
+        BufferSize: 80
+        InCon: wm
+        OutCon: pe16
   - Accelerator:
-    - Name: calc
+    - Name: calc1
       IrPath: hw/calc.ll
       ConfigPath: hw/calc.ini
-      PIOSize: 4096
+      PIOSize: 128
       InterruptNum: 68
       PIOMaster: LocalBus
       LocalSlaves: LocalBus
       Debug: False
     - Var:
-      - Name: stream_calc_wm
+      - Name: stream_calc1_wm
         Type: Stream
         StreamSize: 8
-        BufferSize: 10
-        InCon: calc
+        BufferSize: 80
+        InCon: calc1
         OutCon: wm
 
   - Accelerator:
-    - Name: pe
-      IrPath: hw/pe.ll
-      ConfigPath: hw/pe.ini
-      PIOSize: 4096
+    - Name: calc2
+      IrPath: hw/calc.ll
+      ConfigPath: hw/calc.ini
+      PIOSize: 128
       InterruptNum: 68
       PIOMaster: LocalBus
       LocalSlaves: LocalBus
       Debug: False
     - Var:
-      - Name: stream_pe_wm
+      - Name: stream_calc2_wm
         Type: Stream
         StreamSize: 8
-        BufferSize: 10
-        InCon: pe
+        BufferSize: 80
+        InCon: calc2
+        OutCon: wm
+
+  - Accelerator:
+    - Name: calc3
+      IrPath: hw/calc.ll
+      ConfigPath: hw/calc.ini
+      PIOSize: 128
+      InterruptNum: 68
+      PIOMaster: LocalBus
+      LocalSlaves: LocalBus
+      Debug: False
+    - Var:
+      - Name: stream_calc3_wm
+        Type: Stream
+        StreamSize: 8
+        BufferSize: 80
+        InCon: calc3
+        OutCon: wm
+
+  - Accelerator:
+    - Name: calc4
+      IrPath: hw/calc.ll
+      ConfigPath: hw/calc.ini
+      PIOSize: 128
+      InterruptNum: 68
+      PIOMaster: LocalBus
+      LocalSlaves: LocalBus
+      Debug: False
+    - Var:
+      - Name: stream_calc4_wm
+        Type: Stream
+        StreamSize: 8
+        BufferSize: 80
+        InCon: calc4
+        OutCon: wm
+
+  - Accelerator:
+    - Name: calc5
+      IrPath: hw/calc.ll
+      ConfigPath: hw/calc.ini
+      PIOSize: 128
+      InterruptNum: 68
+      PIOMaster: LocalBus
+      LocalSlaves: LocalBus
+      Debug: False
+    - Var:
+      - Name: stream_calc5_wm
+        Type: Stream
+        StreamSize: 8
+        BufferSize: 80
+        InCon: calc5
+        OutCon: wm
+
+  - Accelerator:
+    - Name: calc6
+      IrPath: hw/calc.ll
+      ConfigPath: hw/calc.ini
+      PIOSize: 128
+      InterruptNum: 68
+      PIOMaster: LocalBus
+      LocalSlaves: LocalBus
+      Debug: False
+    - Var:
+      - Name: stream_calc6_wm
+        Type: Stream
+        StreamSize: 8
+        BufferSize: 80
+        InCon: calc6
+        OutCon: wm
+
+  - Accelerator:
+    - Name: calc7
+      IrPath: hw/calc.ll
+      ConfigPath: hw/calc.ini
+      PIOSize: 128
+      InterruptNum: 68
+      PIOMaster: LocalBus
+      LocalSlaves: LocalBus
+      Debug: False
+    - Var:
+      - Name: stream_calc7_wm
+        Type: Stream
+        StreamSize: 8
+        BufferSize: 80
+        InCon: calc7
+        OutCon: wm
+
+  - Accelerator:
+    - Name: calc8
+      IrPath: hw/calc.ll
+      ConfigPath: hw/calc.ini
+      PIOSize: 128
+      InterruptNum: 68
+      PIOMaster: LocalBus
+      LocalSlaves: LocalBus
+      Debug: False
+    - Var:
+      - Name: stream_calc8_wm
+        Type: Stream
+        StreamSize: 8
+        BufferSize: 80
+        InCon: calc8
+        OutCon: wm
+
+  - Accelerator:
+    - Name: calc9
+      IrPath: hw/calc.ll
+      ConfigPath: hw/calc.ini
+      PIOSize: 128
+      InterruptNum: 68
+      PIOMaster: LocalBus
+      LocalSlaves: LocalBus
+      Debug: False
+    - Var:
+      - Name: stream_calc9_wm
+        Type: Stream
+        StreamSize: 8
+        BufferSize: 80
+        InCon: calc9
+        OutCon: wm
+
+  - Accelerator:
+    - Name: calc10
+      IrPath: hw/calc.ll
+      ConfigPath: hw/calc.ini
+      PIOSize: 128
+      InterruptNum: 68
+      PIOMaster: LocalBus
+      LocalSlaves: LocalBus
+      Debug: False
+    - Var:
+      - Name: stream_calc10_wm
+        Type: Stream
+        StreamSize: 8
+        BufferSize: 80
+        InCon: calc10
+        OutCon: wm
+
+  - Accelerator:
+    - Name: calc11
+      IrPath: hw/calc.ll
+      ConfigPath: hw/calc.ini
+      PIOSize: 128
+      InterruptNum: 68
+      PIOMaster: LocalBus
+      LocalSlaves: LocalBus
+      Debug: False
+    - Var:
+      - Name: stream_calc11_wm
+        Type: Stream
+        StreamSize: 8
+        BufferSize: 80
+        InCon: calc11
+        OutCon: wm
+
+  - Accelerator:
+    - Name: calc12
+      IrPath: hw/calc.ll
+      ConfigPath: hw/calc.ini
+      PIOSize: 128
+      InterruptNum: 68
+      PIOMaster: LocalBus
+      LocalSlaves: LocalBus
+      Debug: False
+    - Var:
+      - Name: stream_calc12_wm
+        Type: Stream
+        StreamSize: 8
+        BufferSize: 80
+        InCon: calc12
+        OutCon: wm
+
+  - Accelerator:
+    - Name: calc13
+      IrPath: hw/calc.ll
+      ConfigPath: hw/calc.ini
+      PIOSize: 128
+      InterruptNum: 68
+      PIOMaster: LocalBus
+      LocalSlaves: LocalBus
+      Debug: False
+    - Var:
+      - Name: stream_calc13_wm
+        Type: Stream
+        StreamSize: 8
+        BufferSize: 80
+        InCon: calc13
+        OutCon: wm
+
+  - Accelerator:
+    - Name: calc14
+      IrPath: hw/calc.ll
+      ConfigPath: hw/calc.ini
+      PIOSize: 128
+      InterruptNum: 68
+      PIOMaster: LocalBus
+      LocalSlaves: LocalBus
+      Debug: False
+    - Var:
+      - Name: stream_calc14_wm
+        Type: Stream
+        StreamSize: 8
+        BufferSize: 80
+        InCon: calc14
+        OutCon: wm
+
+  - Accelerator:
+    - Name: calc15
+      IrPath: hw/calc.ll
+      ConfigPath: hw/calc.ini
+      PIOSize: 128
+      InterruptNum: 68
+      PIOMaster: LocalBus
+      LocalSlaves: LocalBus
+      Debug: False
+    - Var:
+      - Name: stream_calc15_wm
+        Type: Stream
+        StreamSize: 8
+        BufferSize: 80
+        InCon: calc15
+        OutCon: wm
+
+  - Accelerator:
+    - Name: calc16
+      IrPath: hw/calc.ll
+      ConfigPath: hw/calc.ini
+      PIOSize: 128
+      InterruptNum: 68
+      PIOMaster: LocalBus
+      LocalSlaves: LocalBus
+      Debug: False
+    - Var:
+      - Name: stream_calc16_wm
+        Type: Stream
+        StreamSize: 8
+        BufferSize: 80
+        InCon: calc16
+        OutCon: wm
+
+  - Accelerator:
+    - Name: calc17
+      IrPath: hw/calc.ll
+      ConfigPath: hw/calc.ini
+      PIOSize: 128
+      InterruptNum: 68
+      PIOMaster: LocalBus
+      LocalSlaves: LocalBus
+      Debug: False
+    - Var:
+      - Name: stream_calc17_wm
+        Type: Stream
+        StreamSize: 8
+        BufferSize: 80
+        InCon: calc17
+        OutCon: wm
+
+  - Accelerator:
+    - Name: calc18
+      IrPath: hw/calc.ll
+      ConfigPath: hw/calc.ini
+      PIOSize: 128
+      InterruptNum: 68
+      PIOMaster: LocalBus
+      LocalSlaves: LocalBus
+      Debug: False
+    - Var:
+      - Name: stream_calc18_wm
+        Type: Stream
+        StreamSize: 8
+        BufferSize: 80
+        InCon: calc18
+        OutCon: wm
+
+  - Accelerator:
+    - Name: calc19
+      IrPath: hw/calc.ll
+      ConfigPath: hw/calc.ini
+      PIOSize: 128
+      InterruptNum: 68
+      PIOMaster: LocalBus
+      LocalSlaves: LocalBus
+      Debug: False
+    - Var:
+      - Name: stream_calc19_wm
+        Type: Stream
+        StreamSize: 8
+        BufferSize: 80
+        InCon: calc19
+        OutCon: wm
+
+  - Accelerator:
+    - Name: calc20
+      IrPath: hw/calc.ll
+      ConfigPath: hw/calc.ini
+      PIOSize: 128
+      InterruptNum: 68
+      PIOMaster: LocalBus
+      LocalSlaves: LocalBus
+      Debug: False
+    - Var:
+      - Name: stream_calc20_wm
+        Type: Stream
+        StreamSize: 8
+        BufferSize: 80
+        InCon: calc20
+        OutCon: wm
+
+  - Accelerator:
+    - Name: calc21
+      IrPath: hw/calc.ll
+      ConfigPath: hw/calc.ini
+      PIOSize: 128
+      InterruptNum: 68
+      PIOMaster: LocalBus
+      LocalSlaves: LocalBus
+      Debug: False
+    - Var:
+      - Name: stream_calc21_wm
+        Type: Stream
+        StreamSize: 8
+        BufferSize: 80
+        InCon: calc21
+        OutCon: wm
+
+  - Accelerator:
+    - Name: calc22
+      IrPath: hw/calc.ll
+      ConfigPath: hw/calc.ini
+      PIOSize: 128
+      InterruptNum: 68
+      PIOMaster: LocalBus
+      LocalSlaves: LocalBus
+      Debug: False
+    - Var:
+      - Name: stream_calc22_wm
+        Type: Stream
+        StreamSize: 8
+        BufferSize: 80
+        InCon: calc22
+        OutCon: wm
+
+  - Accelerator:
+    - Name: calc23
+      IrPath: hw/calc.ll
+      ConfigPath: hw/calc.ini
+      PIOSize: 128
+      InterruptNum: 68
+      PIOMaster: LocalBus
+      LocalSlaves: LocalBus
+      Debug: False
+    - Var:
+      - Name: stream_calc23_wm
+        Type: Stream
+        StreamSize: 8
+        BufferSize: 80
+        InCon: calc23
+        OutCon: wm
+
+  - Accelerator:
+    - Name: calc24
+      IrPath: hw/calc.ll
+      ConfigPath: hw/calc.ini
+      PIOSize: 128
+      InterruptNum: 68
+      PIOMaster: LocalBus
+      LocalSlaves: LocalBus
+      Debug: False
+    - Var:
+      - Name: stream_calc24_wm
+        Type: Stream
+        StreamSize: 8
+        BufferSize: 80
+        InCon: calc24
+        OutCon: wm
+
+  - Accelerator:
+    - Name: calc25
+      IrPath: hw/calc.ll
+      ConfigPath: hw/calc.ini
+      PIOSize: 128
+      InterruptNum: 68
+      PIOMaster: LocalBus
+      LocalSlaves: LocalBus
+      Debug: False
+    - Var:
+      - Name: stream_calc25_wm
+        Type: Stream
+        StreamSize: 8
+        BufferSize: 80
+        InCon: calc25
+        OutCon: wm
+
+  - Accelerator:
+    - Name: calc26
+      IrPath: hw/calc.ll
+      ConfigPath: hw/calc.ini
+      PIOSize: 128
+      InterruptNum: 68
+      PIOMaster: LocalBus
+      LocalSlaves: LocalBus
+      Debug: False
+    - Var:
+      - Name: stream_calc26_wm
+        Type: Stream
+        StreamSize: 8
+        BufferSize: 80
+        InCon: calc26
+        OutCon: wm
+
+  - Accelerator:
+    - Name: calc27
+      IrPath: hw/calc.ll
+      ConfigPath: hw/calc.ini
+      PIOSize: 128
+      InterruptNum: 68
+      PIOMaster: LocalBus
+      LocalSlaves: LocalBus
+      Debug: False
+    - Var:
+      - Name: stream_calc27_wm
+        Type: Stream
+        StreamSize: 8
+        BufferSize: 80
+        InCon: calc27
+        OutCon: wm
+
+  - Accelerator:
+    - Name: calc28
+      IrPath: hw/calc.ll
+      ConfigPath: hw/calc.ini
+      PIOSize: 128
+      InterruptNum: 68
+      PIOMaster: LocalBus
+      LocalSlaves: LocalBus
+      Debug: False
+    - Var:
+      - Name: stream_calc28_wm
+        Type: Stream
+        StreamSize: 8
+        BufferSize: 80
+        InCon: calc28
+        OutCon: wm
+
+  - Accelerator:
+    - Name: calc29
+      IrPath: hw/calc.ll
+      ConfigPath: hw/calc.ini
+      PIOSize: 128
+      InterruptNum: 68
+      PIOMaster: LocalBus
+      LocalSlaves: LocalBus
+      Debug: False
+    - Var:
+      - Name: stream_calc29_wm
+        Type: Stream
+        StreamSize: 8
+        BufferSize: 80
+        InCon: calc29
+        OutCon: wm
+
+  - Accelerator:
+    - Name: calc30
+      IrPath: hw/calc.ll
+      ConfigPath: hw/calc.ini
+      PIOSize: 128
+      InterruptNum: 68
+      PIOMaster: LocalBus
+      LocalSlaves: LocalBus
+      Debug: False
+    - Var:
+      - Name: stream_calc30_wm
+        Type: Stream
+        StreamSize: 8
+        BufferSize: 80
+        InCon: calc30
+        OutCon: wm
+
+  - Accelerator:
+    - Name: calc31
+      IrPath: hw/calc.ll
+      ConfigPath: hw/calc.ini
+      PIOSize: 128
+      InterruptNum: 68
+      PIOMaster: LocalBus
+      LocalSlaves: LocalBus
+      Debug: False
+    - Var:
+      - Name: stream_calc31_wm
+        Type: Stream
+        StreamSize: 8
+        BufferSize: 80
+        InCon: calc31
+        OutCon: wm
+
+  - Accelerator:
+    - Name: calc32
+      IrPath: hw/calc.ll
+      ConfigPath: hw/calc.ini
+      PIOSize: 128
+      InterruptNum: 68
+      PIOMaster: LocalBus
+      LocalSlaves: LocalBus
+      Debug: False
+    - Var:
+      - Name: stream_calc32_wm
+        Type: Stream
+        StreamSize: 8
+        BufferSize: 80
+        InCon: calc32
+        OutCon: wm
+
+  - Accelerator:
+    - Name: calc33
+      IrPath: hw/calc.ll
+      ConfigPath: hw/calc.ini
+      PIOSize: 128
+      InterruptNum: 68
+      PIOMaster: LocalBus
+      LocalSlaves: LocalBus
+      Debug: False
+    - Var:
+      - Name: stream_calc33_wm
+        Type: Stream
+        StreamSize: 8
+        BufferSize: 80
+        InCon: calc33
+        OutCon: wm
+
+  - Accelerator:
+    - Name: calc34
+      IrPath: hw/calc.ll
+      ConfigPath: hw/calc.ini
+      PIOSize: 128
+      InterruptNum: 68
+      PIOMaster: LocalBus
+      LocalSlaves: LocalBus
+      Debug: False
+    - Var:
+      - Name: stream_calc34_wm
+        Type: Stream
+        StreamSize: 8
+        BufferSize: 80
+        InCon: calc34
+        OutCon: wm
+
+  - Accelerator:
+    - Name: calc35
+      IrPath: hw/calc.ll
+      ConfigPath: hw/calc.ini
+      PIOSize: 128
+      InterruptNum: 68
+      PIOMaster: LocalBus
+      LocalSlaves: LocalBus
+      Debug: False
+    - Var:
+      - Name: stream_calc35_wm
+        Type: Stream
+        StreamSize: 8
+        BufferSize: 80
+        InCon: calc35
+        OutCon: wm
+
+  - Accelerator:
+    - Name: calc36
+      IrPath: hw/calc.ll
+      ConfigPath: hw/calc.ini
+      PIOSize: 128
+      InterruptNum: 68
+      PIOMaster: LocalBus
+      LocalSlaves: LocalBus
+      Debug: False
+    - Var:
+      - Name: stream_calc36_wm
+        Type: Stream
+        StreamSize: 8
+        BufferSize: 80
+        InCon: calc36
+        OutCon: wm
+
+  - Accelerator:
+    - Name: calc37
+      IrPath: hw/calc.ll
+      ConfigPath: hw/calc.ini
+      PIOSize: 128
+      InterruptNum: 68
+      PIOMaster: LocalBus
+      LocalSlaves: LocalBus
+      Debug: False
+    - Var:
+      - Name: stream_calc37_wm
+        Type: Stream
+        StreamSize: 8
+        BufferSize: 80
+        InCon: calc37
+        OutCon: wm
+
+  - Accelerator:
+    - Name: calc38
+      IrPath: hw/calc.ll
+      ConfigPath: hw/calc.ini
+      PIOSize: 128
+      InterruptNum: 68
+      PIOMaster: LocalBus
+      LocalSlaves: LocalBus
+      Debug: False
+    - Var:
+      - Name: stream_calc38_wm
+        Type: Stream
+        StreamSize: 8
+        BufferSize: 80
+        InCon: calc38
+        OutCon: wm
+
+  - Accelerator:
+    - Name: calc39
+      IrPath: hw/calc.ll
+      ConfigPath: hw/calc.ini
+      PIOSize: 128
+      InterruptNum: 68
+      PIOMaster: LocalBus
+      LocalSlaves: LocalBus
+      Debug: False
+    - Var:
+      - Name: stream_calc39_wm
+        Type: Stream
+        StreamSize: 8
+        BufferSize: 80
+        InCon: calc39
+        OutCon: wm
+
+  - Accelerator:
+    - Name: calc40
+      IrPath: hw/calc.ll
+      ConfigPath: hw/calc.ini
+      PIOSize: 128
+      InterruptNum: 68
+      PIOMaster: LocalBus
+      LocalSlaves: LocalBus
+      Debug: False
+    - Var:
+      - Name: stream_calc40_wm
+        Type: Stream
+        StreamSize: 8
+        BufferSize: 80
+        InCon: calc40
+        OutCon: wm
+
+  - Accelerator:
+    - Name: calc41
+      IrPath: hw/calc.ll
+      ConfigPath: hw/calc.ini
+      PIOSize: 128
+      InterruptNum: 68
+      PIOMaster: LocalBus
+      LocalSlaves: LocalBus
+      Debug: False
+    - Var:
+      - Name: stream_calc41_wm
+        Type: Stream
+        StreamSize: 8
+        BufferSize: 80
+        InCon: calc41
+        OutCon: wm
+
+  - Accelerator:
+    - Name: calc42
+      IrPath: hw/calc.ll
+      ConfigPath: hw/calc.ini
+      PIOSize: 128
+      InterruptNum: 68
+      PIOMaster: LocalBus
+      LocalSlaves: LocalBus
+      Debug: False
+    - Var:
+      - Name: stream_calc42_wm
+        Type: Stream
+        StreamSize: 8
+        BufferSize: 80
+        InCon: calc42
+        OutCon: wm
+
+  - Accelerator:
+    - Name: calc43
+      IrPath: hw/calc.ll
+      ConfigPath: hw/calc.ini
+      PIOSize: 128
+      InterruptNum: 68
+      PIOMaster: LocalBus
+      LocalSlaves: LocalBus
+      Debug: False
+    - Var:
+      - Name: stream_calc43_wm
+        Type: Stream
+        StreamSize: 8
+        BufferSize: 80
+        InCon: calc43
+        OutCon: wm
+
+  - Accelerator:
+    - Name: calc44
+      IrPath: hw/calc.ll
+      ConfigPath: hw/calc.ini
+      PIOSize: 128
+      InterruptNum: 68
+      PIOMaster: LocalBus
+      LocalSlaves: LocalBus
+      Debug: False
+    - Var:
+      - Name: stream_calc44_wm
+        Type: Stream
+        StreamSize: 8
+        BufferSize: 80
+        InCon: calc44
+        OutCon: wm
+
+  - Accelerator:
+    - Name: calc45
+      IrPath: hw/calc.ll
+      ConfigPath: hw/calc.ini
+      PIOSize: 128
+      InterruptNum: 68
+      PIOMaster: LocalBus
+      LocalSlaves: LocalBus
+      Debug: False
+    - Var:
+      - Name: stream_calc45_wm
+        Type: Stream
+        StreamSize: 8
+        BufferSize: 80
+        InCon: calc45
+        OutCon: wm
+
+  - Accelerator:
+    - Name: calc46
+      IrPath: hw/calc.ll
+      ConfigPath: hw/calc.ini
+      PIOSize: 128
+      InterruptNum: 68
+      PIOMaster: LocalBus
+      LocalSlaves: LocalBus
+      Debug: False
+    - Var:
+      - Name: stream_calc46_wm
+        Type: Stream
+        StreamSize: 8
+        BufferSize: 80
+        InCon: calc46
+        OutCon: wm
+
+  - Accelerator:
+    - Name: calc47
+      IrPath: hw/calc.ll
+      ConfigPath: hw/calc.ini
+      PIOSize: 128
+      InterruptNum: 68
+      PIOMaster: LocalBus
+      LocalSlaves: LocalBus
+      Debug: False
+    - Var:
+      - Name: stream_calc47_wm
+        Type: Stream
+        StreamSize: 8
+        BufferSize: 80
+        InCon: calc47
+        OutCon: wm
+
+  - Accelerator:
+    - Name: calc48
+      IrPath: hw/calc.ll
+      ConfigPath: hw/calc.ini
+      PIOSize: 128
+      InterruptNum: 68
+      PIOMaster: LocalBus
+      LocalSlaves: LocalBus
+      Debug: False
+    - Var:
+      - Name: stream_calc48_wm
+        Type: Stream
+        StreamSize: 8
+        BufferSize: 80
+        InCon: calc48
+        OutCon: wm
+
+  - Accelerator:
+    - Name: calc49
+      IrPath: hw/calc.ll
+      ConfigPath: hw/calc.ini
+      PIOSize: 128
+      InterruptNum: 68
+      PIOMaster: LocalBus
+      LocalSlaves: LocalBus
+      Debug: False
+    - Var:
+      - Name: stream_calc49_wm
+        Type: Stream
+        StreamSize: 8
+        BufferSize: 80
+        InCon: calc49
+        OutCon: wm
+
+  - Accelerator:
+    - Name: calc50
+      IrPath: hw/calc.ll
+      ConfigPath: hw/calc.ini
+      PIOSize: 128
+      InterruptNum: 68
+      PIOMaster: LocalBus
+      LocalSlaves: LocalBus
+      Debug: False
+    - Var:
+      - Name: stream_calc50_wm
+        Type: Stream
+        StreamSize: 8
+        BufferSize: 80
+        InCon: calc50
+        OutCon: wm
+
+  - Accelerator:
+    - Name: calc51
+      IrPath: hw/calc.ll
+      ConfigPath: hw/calc.ini
+      PIOSize: 128
+      InterruptNum: 68
+      PIOMaster: LocalBus
+      LocalSlaves: LocalBus
+      Debug: False
+    - Var:
+      - Name: stream_calc51_wm
+        Type: Stream
+        StreamSize: 8
+        BufferSize: 80
+        InCon: calc51
+        OutCon: wm
+
+  - Accelerator:
+    - Name: calc52
+      IrPath: hw/calc.ll
+      ConfigPath: hw/calc.ini
+      PIOSize: 128
+      InterruptNum: 68
+      PIOMaster: LocalBus
+      LocalSlaves: LocalBus
+      Debug: False
+    - Var:
+      - Name: stream_calc52_wm
+        Type: Stream
+        StreamSize: 8
+        BufferSize: 80
+        InCon: calc52
+        OutCon: wm
+
+  - Accelerator:
+    - Name: calc53
+      IrPath: hw/calc.ll
+      ConfigPath: hw/calc.ini
+      PIOSize: 128
+      InterruptNum: 68
+      PIOMaster: LocalBus
+      LocalSlaves: LocalBus
+      Debug: False
+    - Var:
+      - Name: stream_calc53_wm
+        Type: Stream
+        StreamSize: 8
+        BufferSize: 80
+        InCon: calc53
+        OutCon: wm
+
+  - Accelerator:
+    - Name: calc54
+      IrPath: hw/calc.ll
+      ConfigPath: hw/calc.ini
+      PIOSize: 128
+      InterruptNum: 68
+      PIOMaster: LocalBus
+      LocalSlaves: LocalBus
+      Debug: False
+    - Var:
+      - Name: stream_calc54_wm
+        Type: Stream
+        StreamSize: 8
+        BufferSize: 80
+        InCon: calc54
+        OutCon: wm
+
+  - Accelerator:
+    - Name: calc55
+      IrPath: hw/calc.ll
+      ConfigPath: hw/calc.ini
+      PIOSize: 128
+      InterruptNum: 68
+      PIOMaster: LocalBus
+      LocalSlaves: LocalBus
+      Debug: False
+    - Var:
+      - Name: stream_calc55_wm
+        Type: Stream
+        StreamSize: 8
+        BufferSize: 80
+        InCon: calc55
+        OutCon: wm
+
+  - Accelerator:
+    - Name: calc56
+      IrPath: hw/calc.ll
+      ConfigPath: hw/calc.ini
+      PIOSize: 128
+      InterruptNum: 68
+      PIOMaster: LocalBus
+      LocalSlaves: LocalBus
+      Debug: False
+    - Var:
+      - Name: stream_calc56_wm
+        Type: Stream
+        StreamSize: 8
+        BufferSize: 80
+        InCon: calc56
+        OutCon: wm
+
+  - Accelerator:
+    - Name: calc57
+      IrPath: hw/calc.ll
+      ConfigPath: hw/calc.ini
+      PIOSize: 128
+      InterruptNum: 68
+      PIOMaster: LocalBus
+      LocalSlaves: LocalBus
+      Debug: False
+    - Var:
+      - Name: stream_calc57_wm
+        Type: Stream
+        StreamSize: 8
+        BufferSize: 80
+        InCon: calc57
+        OutCon: wm
+
+  - Accelerator:
+    - Name: calc58
+      IrPath: hw/calc.ll
+      ConfigPath: hw/calc.ini
+      PIOSize: 128
+      InterruptNum: 68
+      PIOMaster: LocalBus
+      LocalSlaves: LocalBus
+      Debug: False
+    - Var:
+      - Name: stream_calc58_wm
+        Type: Stream
+        StreamSize: 8
+        BufferSize: 80
+        InCon: calc58
+        OutCon: wm
+
+  - Accelerator:
+    - Name: calc59
+      IrPath: hw/calc.ll
+      ConfigPath: hw/calc.ini
+      PIOSize: 128
+      InterruptNum: 68
+      PIOMaster: LocalBus
+      LocalSlaves: LocalBus
+      Debug: False
+    - Var:
+      - Name: stream_calc59_wm
+        Type: Stream
+        StreamSize: 8
+        BufferSize: 80
+        InCon: calc59
+        OutCon: wm
+
+  - Accelerator:
+    - Name: calc60
+      IrPath: hw/calc.ll
+      ConfigPath: hw/calc.ini
+      PIOSize: 128
+      InterruptNum: 68
+      PIOMaster: LocalBus
+      LocalSlaves: LocalBus
+      Debug: False
+    - Var:
+      - Name: stream_calc60_wm
+        Type: Stream
+        StreamSize: 8
+        BufferSize: 80
+        InCon: calc60
+        OutCon: wm
+
+  - Accelerator:
+    - Name: calc61
+      IrPath: hw/calc.ll
+      ConfigPath: hw/calc.ini
+      PIOSize: 128
+      InterruptNum: 68
+      PIOMaster: LocalBus
+      LocalSlaves: LocalBus
+      Debug: False
+    - Var:
+      - Name: stream_calc61_wm
+        Type: Stream
+        StreamSize: 8
+        BufferSize: 80
+        InCon: calc61
+        OutCon: wm
+
+  - Accelerator:
+    - Name: calc62
+      IrPath: hw/calc.ll
+      ConfigPath: hw/calc.ini
+      PIOSize: 128
+      InterruptNum: 68
+      PIOMaster: LocalBus
+      LocalSlaves: LocalBus
+      Debug: False
+    - Var:
+      - Name: stream_calc62_wm
+        Type: Stream
+        StreamSize: 8
+        BufferSize: 80
+        InCon: calc62
+        OutCon: wm
+
+  - Accelerator:
+    - Name: calc63
+      IrPath: hw/calc.ll
+      ConfigPath: hw/calc.ini
+      PIOSize: 128
+      InterruptNum: 68
+      PIOMaster: LocalBus
+      LocalSlaves: LocalBus
+      Debug: False
+    - Var:
+      - Name: stream_calc63_wm
+        Type: Stream
+        StreamSize: 8
+        BufferSize: 80
+        InCon: calc63
+        OutCon: wm
+
+  - Accelerator:
+    - Name: calc64
+      IrPath: hw/calc.ll
+      ConfigPath: hw/calc.ini
+      PIOSize: 128
+      InterruptNum: 68
+      PIOMaster: LocalBus
+      LocalSlaves: LocalBus
+      Debug: False
+    - Var:
+      - Name: stream_calc64_wm
+        Type: Stream
+        StreamSize: 8
+        BufferSize: 80
+        InCon: calc64
+        OutCon: wm
+
+  - Accelerator:
+    - Name: pe1
+      IrPath: hw/pe1.ll
+      ConfigPath: hw/pe1.ini
+      PIOSize: 128
+      InterruptNum: 68
+      PIOMaster: LocalBus
+      LocalSlaves: LocalBus
+      Debug: False
+    - Var:
+      - Name: stream_pe1_wm
+        Type: Stream
+        StreamSize: 8
+        BufferSize: 80
+        InCon: pe1
+        OutCon: wm
+
+  - Accelerator:
+    - Name: pe2
+      IrPath: hw/pe2.ll
+      ConfigPath: hw/pe2.ini
+      PIOSize: 128
+      InterruptNum: 68
+      PIOMaster: LocalBus
+      LocalSlaves: LocalBus
+      Debug: False
+    - Var:
+      - Name: stream_pe2_wm
+        Type: Stream
+        StreamSize: 8
+        BufferSize: 80
+        InCon: pe2
+        OutCon: wm
+
+  - Accelerator:
+    - Name: pe3
+      IrPath: hw/pe3.ll
+      ConfigPath: hw/pe3.ini
+      PIOSize: 128
+      InterruptNum: 68
+      PIOMaster: LocalBus
+      LocalSlaves: LocalBus
+      Debug: False
+    - Var:
+      - Name: stream_pe3_wm
+        Type: Stream
+        StreamSize: 8
+        BufferSize: 80
+        InCon: pe3
+        OutCon: wm
+
+  - Accelerator:
+    - Name: pe4
+      IrPath: hw/pe4.ll
+      ConfigPath: hw/pe4.ini
+      PIOSize: 128
+      InterruptNum: 68
+      PIOMaster: LocalBus
+      LocalSlaves: LocalBus
+      Debug: False
+    - Var:
+      - Name: stream_pe4_wm
+        Type: Stream
+        StreamSize: 8
+        BufferSize: 80
+        InCon: pe4
+        OutCon: wm
+
+  - Accelerator:
+    - Name: pe5
+      IrPath: hw/pe5.ll
+      ConfigPath: hw/pe5.ini
+      PIOSize: 128
+      InterruptNum: 68
+      PIOMaster: LocalBus
+      LocalSlaves: LocalBus
+      Debug: False
+    - Var:
+      - Name: stream_pe5_wm
+        Type: Stream
+        StreamSize: 8
+        BufferSize: 80
+        InCon: pe5
+        OutCon: wm
+
+  - Accelerator:
+    - Name: pe6
+      IrPath: hw/pe6.ll
+      ConfigPath: hw/pe6.ini
+      PIOSize: 128
+      InterruptNum: 68
+      PIOMaster: LocalBus
+      LocalSlaves: LocalBus
+      Debug: False
+    - Var:
+      - Name: stream_pe6_wm
+        Type: Stream
+        StreamSize: 8
+        BufferSize: 80
+        InCon: pe6
+        OutCon: wm
+
+  - Accelerator:
+    - Name: pe7
+      IrPath: hw/pe7.ll
+      ConfigPath: hw/pe7.ini
+      PIOSize: 128
+      InterruptNum: 68
+      PIOMaster: LocalBus
+      LocalSlaves: LocalBus
+      Debug: False
+    - Var:
+      - Name: stream_pe7_wm
+        Type: Stream
+        StreamSize: 8
+        BufferSize: 80
+        InCon: pe7
+        OutCon: wm
+
+  - Accelerator:
+    - Name: pe8
+      IrPath: hw/pe8.ll
+      ConfigPath: hw/pe8.ini
+      PIOSize: 128
+      InterruptNum: 68
+      PIOMaster: LocalBus
+      LocalSlaves: LocalBus
+      Debug: False
+    - Var:
+      - Name: stream_pe8_wm
+        Type: Stream
+        StreamSize: 8
+        BufferSize: 80
+        InCon: pe8
+        OutCon: wm
+
+  - Accelerator:
+    - Name: pe9
+      IrPath: hw/pe9.ll
+      ConfigPath: hw/pe9.ini
+      PIOSize: 128
+      InterruptNum: 68
+      PIOMaster: LocalBus
+      LocalSlaves: LocalBus
+      Debug: False
+    - Var:
+      - Name: stream_pe9_wm
+        Type: Stream
+        StreamSize: 8
+        BufferSize: 80
+        InCon: pe9
+        OutCon: wm
+
+  - Accelerator:
+    - Name: pe10
+      IrPath: hw/pe10.ll
+      ConfigPath: hw/pe10.ini
+      PIOSize: 128
+      InterruptNum: 68
+      PIOMaster: LocalBus
+      LocalSlaves: LocalBus
+      Debug: False
+    - Var:
+      - Name: stream_pe10_wm
+        Type: Stream
+        StreamSize: 8
+        BufferSize: 80
+        InCon: pe10
+        OutCon: wm
+
+  - Accelerator:
+    - Name: pe11
+      IrPath: hw/pe11.ll
+      ConfigPath: hw/pe11.ini
+      PIOSize: 128
+      InterruptNum: 68
+      PIOMaster: LocalBus
+      LocalSlaves: LocalBus
+      Debug: False
+    - Var:
+      - Name: stream_pe11_wm
+        Type: Stream
+        StreamSize: 8
+        BufferSize: 80
+        InCon: pe11
+        OutCon: wm
+
+  - Accelerator:
+    - Name: pe12
+      IrPath: hw/pe12.ll
+      ConfigPath: hw/pe12.ini
+      PIOSize: 128
+      InterruptNum: 68
+      PIOMaster: LocalBus
+      LocalSlaves: LocalBus
+      Debug: False
+    - Var:
+      - Name: stream_pe12_wm
+        Type: Stream
+        StreamSize: 8
+        BufferSize: 80
+        InCon: pe12
+        OutCon: wm
+
+  - Accelerator:
+    - Name: pe13
+      IrPath: hw/pe13.ll
+      ConfigPath: hw/pe13.ini
+      PIOSize: 128
+      InterruptNum: 68
+      PIOMaster: LocalBus
+      LocalSlaves: LocalBus
+      Debug: False
+    - Var:
+      - Name: stream_pe13_wm
+        Type: Stream
+        StreamSize: 8
+        BufferSize: 80
+        InCon: pe13
+        OutCon: wm
+
+  - Accelerator:
+    - Name: pe14
+      IrPath: hw/pe14.ll
+      ConfigPath: hw/pe14.ini
+      PIOSize: 128
+      InterruptNum: 68
+      PIOMaster: LocalBus
+      LocalSlaves: LocalBus
+      Debug: False
+    - Var:
+      - Name: stream_pe14_wm
+        Type: Stream
+        StreamSize: 8
+        BufferSize: 80
+        InCon: pe14
+        OutCon: wm
+
+  - Accelerator:
+    - Name: pe15
+      IrPath: hw/pe15.ll
+      ConfigPath: hw/pe15.ini
+      PIOSize: 128
+      InterruptNum: 68
+      PIOMaster: LocalBus
+      LocalSlaves: LocalBus
+      Debug: False
+    - Var:
+      - Name: stream_pe15_wm
+        Type: Stream
+        StreamSize: 8
+        BufferSize: 80
+        InCon: pe15
+        OutCon: wm
+
+  - Accelerator:
+    - Name: pe16
+      IrPath: hw/pe16.ll
+      ConfigPath: hw/pe16.ini
+      PIOSize: 128
+      InterruptNum: 68
+      PIOMaster: LocalBus
+      LocalSlaves: LocalBus
+      Debug: False
+    - Var:
+      - Name: stream_pe16_wm
+        Type: Stream
+        StreamSize: 8
+        BufferSize: 80
+        InCon: pe16
         OutCon: wm
 
 hw_config:
   top:
-  pe:
-  calc:
+  pe1:
+  pe2:
+  pe3:
+  pe4:
+  pe5:
+  pe6:
+  pe7:
+  pe8:
+  pe9:
+  pe10:
+  pe11:
+  pe12:
+  pe13:
+  pe14:
+  pe15:
+  pe16:
+  calc1:
+  calc2:
+  calc3:
+  calc4:
+  calc5:
+  calc6:
+  calc7:
+  calc8:
+  calc9:
+  calc10:
+  calc11:
+  calc12:
+  calc13:
+  calc14:
+  calc15:
+  calc16:
+  calc17:
+  calc18:
+  calc19:
+  calc20:
+  calc21:
+  calc22:
+  calc23:
+  calc24:
+  calc25:
+  calc26:
+  calc27:
+  calc28:
+  calc29:
+  calc30:
+  calc31:
+  calc32:
+  calc33:
+  calc34:
+  calc35:
+  calc36:
+  calc37:
+  calc38:
+  calc39:
+  calc40:
+  calc41:
+  calc42:
+  calc43:
+  calc44:
+  calc45:
+  calc46:
+  calc47:
+  calc48:
+  calc49:
+  calc50:
+  calc51:
+  calc52:
+  calc53:
+  calc54:
+  calc55:
+  calc56:
+  calc57:
+  calc58:
+  calc59:
+  calc60:
+  calc61:
+  calc62:
+  calc63:
+  calc64:
   wm:
     instructions:
       add:
@@ -330,4 +2280,5 @@ hw_config:
         functional_unit_limit: 0
         opcode_num: 39
         runtime_cycles: 0
+
 

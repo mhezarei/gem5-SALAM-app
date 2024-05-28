@@ -7,8 +7,9 @@ BENCH="ts"
 DEBUG="false"
 PRINT_TO_FILE="false"
 VALGRIND="false"
+GDB="false"
 
-while getopts ":f:vdpc" opt; do
+while getopts ":f:vdpcg" opt; do
 	case $opt in
 		d )
 			DEBUG="true"
@@ -27,9 +28,12 @@ while getopts ":f:vdpc" opt; do
 		v )
 			VALGRIND="true"
 			;;
+		g )
+			GDB="true"
+			;;
 		* )
 			echo "Invalid argument: ${OPTARG}"
-			echo "Usage: $0 (-f DEBUGFLAG) (-p) (-d)"
+			echo "Usage: $0 (-f DEBUGFLAG) (-p) (-d) (-g)"
 			exit 1
 			;;
 	esac
@@ -52,7 +56,11 @@ elif [ "${VALGRIND}" == "true" ]; then
 	--log-file=${OUTDIR}/valgrind.log \
 	${M5_PATH}/build/ARM/gem5.debug"
 else
-	BINARY="${M5_PATH}/build/ARM/gem5.opt"
+	if [ "${GDB}" == "true" ]; then
+		BINARY="${M5_PATH}/build/ARM/gem5.debug"
+	else
+		BINARY="${M5_PATH}/build/ARM/gem5.opt"
+	fi
 fi
 
 KERNEL=$M5_APP_PATH/$BENCH/sw/main.elf
@@ -66,7 +74,7 @@ SYS_OPTS="--mem-size=8GB \
           --dtb-file=none \
 		  --bare-metal \
           --cpu-type=DerivO3CPU"
-CACHE_OPTS="--caches --l2cache --acc_cache"
+CACHE_OPTS="--caches"
 
 DEBUG_FLAGS=""
 
@@ -75,21 +83,37 @@ if [ "${FLAGS}" != "" ]; then
 	DEBUG_FLAGS+=$FLAGS
 fi
 
-RUN_SCRIPT="$BINARY \
-			$DEBUG_FLAGS \
-			--outdir=$OUTDIR \
-			$M5_PATH/configs/SALAM/fs_$BENCH.py $SYS_OPTS \
-			--accpath=$M5_APP_PATH \
-			--accbench=$BENCH \
-			$CACHE_OPTS"
+RUN_SCRIPT=""
+if [ "${GDB}" == "true" ]; then
+	RUN_SCRIPT="gdb --args $BINARY \
+				$DEBUG_FLAGS \
+				--outdir=$OUTDIR \
+				$M5_PATH/configs/SALAM/fs_$BENCH.py $SYS_OPTS \
+				--accpath=$M5_APP_PATH \
+				--accbench=$BENCH \
+				$CACHE_OPTS"
+else
+	RUN_SCRIPT="$BINARY \
+				$DEBUG_FLAGS \
+				--outdir=$OUTDIR \
+				$M5_PATH/configs/SALAM/fs_$BENCH.py $SYS_OPTS \
+				--accpath=$M5_APP_PATH \
+				--accbench=$BENCH \
+				$CACHE_OPTS"
+fi
 
-python3 generators/pe_generator.py > hw/pe.c
+rm hw/pe* ; python3 generators/pe_generator.py
+python3 generators/config_generator.py > config.yml
+python3 generators/top_generator.py > hw/top.c
+python3 generators/addr_generator.py
 (clear ; cd $M5_APP_PATH/$BENCH && rm -f sw/main.elf sw/main.o ; make)
 ${M5_PATH}/tools/SALAM-Configurator/systembuilder.py --sys-name $BENCH --bench-path "$M5_APP_PATH/$BENCH"
 
+# exit
+
 if [ "${PRINT_TO_FILE}" == "true" ]; then
 	mkdir -p $OUTDIR
-	$RUN_SCRIPT > ${OUTDIR}/debug-trace.txt
+	$RUN_SCRIPT > ${OUTDIR}/f64b64_nocache.txt
 else
 	$RUN_SCRIPT
 fi
