@@ -6,8 +6,8 @@ import numpy as np
 
 random.seed(0)
 
-FIXED_CACHE_SIZE = 512 * 1024
-CACHE_ENTRY_SIZE = 24
+FIXED_CACHE_SIZE = 1 * 1024
+CACHE_ENTRY_SIZE = 32
 
 # Format: B, F, NUM_VALUES
 configs = {
@@ -17,6 +17,7 @@ configs = {
     "8": [8, 8, 2**21],
     "4": [4, 4, 2**22],
     "64_4": [64, 4, 2**18],
+    "small": [4, 4, 2**4],
 }
 suffixes = {
     "64": "F64B64",
@@ -25,9 +26,10 @@ suffixes = {
     "8": "F8B8",
     "4": "F4B4",
     "64_4": "F64B4",
+    "small": "small",
 }
 
-conf = "64"
+conf = "4"
 suffix = suffixes[conf]
 F, B, temp = configs[conf]
 NUM_VALUES = temp * B * F
@@ -124,7 +126,7 @@ def gen_cores():
         for j in range(num_cores):
             per_node_range = NUM_VALUES // num_cores
             range_start, range_end = j * per_node_range, (j + 1) * per_node_range - 1
-            # print(range_start, range_end)
+            # print(range_start, ",", range_end)
             stat = random.uniform(*VALUE_RANGE)
             if i == NUM_LEVELS - 1:  # last level cores which point to values
                 curr_base_addr = VALUES_BASE_ADDR + j * F * B * VALUE_SIZE
@@ -138,7 +140,7 @@ def gen_cores():
             # print(pointers)
             cores.append((range_start, range_end, stat, *pointers))
 
-    to_bin(cores, f"cores_full_{suffix}.bin")
+    # to_bin(cores, f"cores_full_{suffix}.bin")
 
 
 gen_cores()

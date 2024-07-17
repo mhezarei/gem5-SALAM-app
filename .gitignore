@@ -47,3 +47,5 @@ datasets
 *.bin.bck
 
 signal_cache
+*/data
+*/workloads

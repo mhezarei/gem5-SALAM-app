@@ -4,6 +4,6 @@
     // for (int i = 0; i < 30; i++)
     //   *((uint64_t *)addr_wm_req_stream) = 0;
     // for (int i = 0; i < 30; i++)
-    //   *((uint64_t *)addr_wm_req_stream) = 1073741823;
+    //   *((uint64_t *)addr_wm_req_stream) = 67108863;
     // *((uint64_t *)bs) = 215182;
   }

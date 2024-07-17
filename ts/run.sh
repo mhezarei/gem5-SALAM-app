@@ -66,8 +66,8 @@ fi
 KERNEL=$M5_APP_PATH/$BENCH/sw/main.elf
 
 SYS_OPTS="--mem-size=8GB \
-		  --mem-type=DDR4_2400_8x8 \
-		  --mem-channels=16 \
+		  --mem-type=DDR4_2400_4x16 \
+		  --mem-channels=4 \
           --kernel=$KERNEL \
           --disk-image=$M5_PATH/benchmarks/common/fake.iso \
           --machine-type=VExpress_GEM5_V1 \
@@ -102,7 +102,7 @@ else
 				$CACHE_OPTS"
 fi
 
-rm hw/pe* ; python3 generators/pe_generator.py
+# rm hw/pe* ; python3 generators/pe_generator.py
 python3 generators/config_generator.py > config.yml
 python3 generators/top_generator.py > hw/top.c
 python3 generators/addr_generator.py
@@ -111,9 +111,16 @@ ${M5_PATH}/tools/SALAM-Configurator/systembuilder.py --sys-name $BENCH --bench-p
 
 # exit
 
-if [ "${PRINT_TO_FILE}" == "true" ]; then
-	mkdir -p $OUTDIR
-	$RUN_SCRIPT > ${OUTDIR}/f64b64_nocache.txt
-else
-	$RUN_SCRIPT
-fi
+for w in random nested cluster zipf full_fine_grain fine_50_coarse_50_aligned fine_75_coarse_25_aligned fine_25_coarse_75_aligned fine_coarse_random_aligned aligned_fixed_depth aligned_random_depth nested_aligned_fixed_depth nested_aligned_random_depth cluster_aligned sequential_aligned zipf_aligned full_fine_grain_aligned
+do
+	echo $w
+	cp workloads/req_$w.txt req.txt
+	if [ "${PRINT_TO_FILE}" == "true" ]; then
+		mkdir -p $OUTDIR
+		$RUN_SCRIPT > ${OUTDIR}/f4b4_limitedcache-128-$w-2K_entries.txt
+	else
+		$RUN_SCRIPT
+	fi
+	cp ${OUTDIR}/stats.txt ${OUTDIR}/stats-limitedcache-128-$w-2K_entries.txt
+	echo "$w done"
+done
