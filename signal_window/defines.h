@@ -1,7 +1,7 @@
 #ifndef __DEFINES_H__
 #define __DEFINES_H__
 
-#include "signal_stream_clstr_hw_defines.h"
+#include "signal_window_clstr_hw_defines.h"
 #include <inttypes.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -17,13 +17,14 @@ typedef struct Event {
   DOUBLE value;
 } Event;
 
-#define NUM_POINTS 61051520
+// #define NUM_POINTS 61051520
+#define NUM_POINTS 1000
 
 #define SIZE_II NUM_POINTS * sizeof(Event)
 #define SIZE_ABP NUM_POINTS * sizeof(Event)
 #define SIZE_RESULT NUM_POINTS * sizeof(Event)
 
-#define WINDOW_SIZE 1000
+#define WINDOW_SIZE 10
 #define MAX_WINDOW_SIZE NUM_POINTS
 
 #define DEV_INIT 0x01

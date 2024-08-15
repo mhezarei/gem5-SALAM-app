@@ -12,7 +12,7 @@ volatile UINT *TOP_WINDOW_SIZE = (volatile UINT *)(TOP + 25);
 volatile UINT *TOP_BS = (volatile UINT *)(TOP + 33);
 volatile UINT *TOP_HAHA = (volatile UINT *)(TOP + 41);
 
-void loadData() {
+void loadConfig() {
   Event *ii = (Event *)(BASE + II_OFFSET);
   Event *abp = (Event *)(BASE + ABP_OFFSET);
   Event *result = (Event *)(BASE + RESULT_OFFSET);
@@ -32,7 +32,7 @@ void loadData() {
 int __attribute__((optimize("0"))) main(void) {
   m5_reset_stats();
 
-  loadData();
+  loadConfig();
 
   volatile int count = 0;
 
@@ -46,7 +46,7 @@ int __attribute__((optimize("0"))) main(void) {
   for (int i = 0; i < 10; i++) {
     printf("0x%16x 0x%16x\n", results[i].timestamp, results[i].value);
   }
-  
+
   m5_dump_stats();
   m5_exit();
 }

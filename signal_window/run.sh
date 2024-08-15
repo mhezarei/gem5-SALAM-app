@@ -2,8 +2,8 @@
 
 set -e
 
-FLAGS="HWACC"
-BENCH="signal_stream"
+FLAGS="HWACC,WindowManager"
+BENCH="signal_window"
 DEBUG="false"
 PRINT_TO_FILE="false"
 VALGRIND="false"

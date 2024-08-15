@@ -1,6 +1,6 @@
 ---
 acc_cluster:
-  - Name: signal_stream_clstr
+  - Name: signal_window_clstr
   - DMA:
     - Name: dma
       MaxReqSize: 1024
@@ -9,7 +9,7 @@ acc_cluster:
       Type: NonCoherent
       InterruptNum: 95
       Debug: False
-  
+
   - Accelerator:
     - Name: top
       IrPath: hw/top.ll
@@ -20,7 +20,57 @@ acc_cluster:
       LocalSlaves: LocalBus
       Debug: False
 
-  ###########################################################
+  ########################################################### wm
+
+  - WindowManager:
+    - Name: wm
+      PIOSize: 4096
+      PIOMaster: LocalBus
+      Debug: True
+    - Var:
+      - Name: STREAM_WM_IMPUTE_1
+        Type: Stream
+        StreamSize: 8
+        BufferSize: 80
+        InCon: wm
+        OutCon: impute_1
+    - Var:
+      - Name: STREAM_WM_IMPUTE_2
+        Type: Stream
+        StreamSize: 8
+        BufferSize: 80
+        InCon: wm
+        OutCon: impute_2
+    - Var:
+      - Name: STREAM_WM_UPSAMPLE
+        Type: Stream
+        StreamSize: 8
+        BufferSize: 80
+        InCon: wm
+        OutCon: upsample
+    - Var:
+      - Name: STREAM_WM_NORMALIZE_1
+        Type: Stream
+        StreamSize: 8
+        BufferSize: 80
+        InCon: wm
+        OutCon: normalize_1
+    - Var:
+      - Name: STREAM_WM_NORMALIZE_2
+        Type: Stream
+        StreamSize: 8
+        BufferSize: 80
+        InCon: wm
+        OutCon: normalize_2
+    - Var:
+      - Name: STREAM_WM_JOIN
+        Type: Stream
+        StreamSize: 8
+        BufferSize: 80
+        InCon: wm
+        OutCon: join
+    
+  ########################################################### impute
 
   - Accelerator:
     - Name: impute_1
@@ -38,6 +88,13 @@ acc_cluster:
         InCon: impute_1
         OutCon: normalize_1
         ports: 10
+    - Var:
+      - Name: STREAM_IMPUTE_1_WM
+        Type: Stream
+        StreamSize: 8
+        BufferSize: 80
+        InCon: impute_1
+        OutCon: wm
   
   - Accelerator:
     - Name: impute_2
@@ -55,8 +112,15 @@ acc_cluster:
         InCon: impute_2
         OutCon: upsample
         ports: 10
+    - Var:
+      - Name: STREAM_IMPUTE_2_WM
+        Type: Stream
+        StreamSize: 8
+        BufferSize: 80
+        InCon: impute_2
+        OutCon: wm
   
-  ###########################################################
+  ########################################################### upsample
 
   - Accelerator:
     - Name: upsample
@@ -74,8 +138,15 @@ acc_cluster:
         InCon: upsample
         OutCon: normalize_2
         ports: 10
+    - Var:
+      - Name: STREAM_UPSAMPLE_WM
+        Type: Stream
+        StreamSize: 8
+        BufferSize: 80
+        InCon: upsample
+        OutCon: wm
   
-  ###########################################################
+  ########################################################### norm
 
   - Accelerator:
     - Name: normalize_1
@@ -98,6 +169,13 @@ acc_cluster:
         Type: SPM
         Size: 20000
         Ports: 10
+    - Var:
+      - Name: STREAM_NORMALIZE_1_WM
+        Type: Stream
+        StreamSize: 8
+        BufferSize: 80
+        InCon: normalize_1
+        OutCon: wm
 
   - Accelerator:
     - Name: normalize_2
@@ -120,8 +198,15 @@ acc_cluster:
         Type: SPM
         Size: 20000
         Ports: 10
+    - Var:
+      - Name: STREAM_NORMALIZE_2_WM
+        Type: Stream
+        StreamSize: 8
+        BufferSize: 80
+        InCon: normalize_2
+        OutCon: wm
 
-  ###########################################################
+  ########################################################### joins
 
   - Accelerator:
     - Name: join
@@ -131,6 +216,13 @@ acc_cluster:
       PIOMaster: LocalBus
       LocalSlaves: LocalBus
       Debug: False
+    - Var:
+      - Name: STREAM_JOIN_WM
+        Type: Stream
+        StreamSize: 8
+        BufferSize: 80
+        InCon: join
+        OutCon: wm
 
 hw_config:
   top:
@@ -140,6 +232,7 @@ hw_config:
   normalize_1:
   normalize_2:
   join:
+  wm:
     instructions:
       add:
         functional_unit: 1
