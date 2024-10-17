@@ -120,6 +120,56 @@ def process_one_instruction(inst: str):
             streams.append(s)
 
 
+def generate_config():
+    mapping = {
+        "app_name": "stateless",
+        "accelerators": "",
+        "accelerator_names": "",
+    }
+
+    for op in operations:
+        inputs: List[Stream] = [s for s in streams if op.name == s.input.get_name()]
+        mapping[
+            "accelerators"
+        ] += f"""  - Accelerator:
+    - Name: {op.name}
+      IrPath: hw/{op.name}.ll
+      ConfigPath: hw/{op.name}.ini
+      PIOSize: 4096
+      PIOMaster: LocalBus
+      LocalSlaves: LocalBus
+      Debug: False
+"""
+        for si in inputs:
+            mapping[
+                "accelerators"
+            ] += f"""    - Var:
+      - Name: STREAM_{si.name.upper()}
+        Type: Stream
+        StreamSize: {si.width}
+        BufferSize: {si.size}
+        InCon: {si.input.get_name()}
+        OutCon: {si.output.get_name()}
+        ports: 10
+"""
+        mapping[
+            "accelerators"
+        ] += """  
+"""
+
+        mapping[
+            "accelerator_names"
+        ] += f"""  {op.name}:
+"""
+
+    with open("template/config.yml", "r") as f:
+        lines = f.readlines()
+
+    with open("output/config.yml", "w") as f:
+        for l in lines:
+            print(l.format(**mapping), end="", file=f)
+
+
 def process_algo(statements: List[str]):
     for inst in statements:
         process_one_instruction(inst)
@@ -136,6 +186,8 @@ def process_algo(statements: List[str]):
     operations[3].generate_acc_code()
     operations[4].generate_acc_code()
     operations[5].generate_acc_code()
+
+    generate_config()
 
 
 def main():

@@ -4,6 +4,13 @@ from stream import Stream
 
 # TODO: automate this
 FIELD_NAMES = ["timestamp", "uid", "age", "sid"]
+MAPPING = {
+    "data_type": "DOUBLE",
+    "field_1": FIELD_NAMES[0],
+    "field_2": FIELD_NAMES[1],
+    "field_3": FIELD_NAMES[2],
+    "field_4": FIELD_NAMES[3],
+}
 
 
 class Operation:
@@ -13,7 +20,17 @@ class Operation:
         self.input_streams: List[Stream] = []
         self.output_streams: List[Stream] = []
 
-    def generate_acc_code():
+    def generate_acc_code(self):
+        mapping = self.update_acc_code_mapping()
+
+        with open(f"template/{self.name}.c", "r") as template:
+            lines = template.readlines()
+
+        with open(f"output/{self.name}.c", "w") as f:
+            for l in lines:
+                print(l.format(**mapping), end="", file=f)
+
+    def update_acc_code_mapping(self) -> dict:
         pass
 
     def add_input_stream(self, inp_stream):
@@ -45,23 +62,12 @@ class Filter(Operation):
         field_name = self.predicate[:op_idx]
         value = self.predicate[op_idx + len(operation) :]
 
-    def generate_acc_code(self):
+    def update_acc_code_mapping(self):
         mapping = {
-            "data_type": "DOUBLE",
-            "init_record": "(DATA_TYPE)-1," * len(FIELD_NAMES),
-            "field_1": FIELD_NAMES[0],
-            "field_2": FIELD_NAMES[1],
-            "field_3": FIELD_NAMES[2],
-            "field_4": FIELD_NAMES[3],
-            "predicate": "r." + self.predicate,
+            "predicate": self.predicate,
         }
-
-        with open(f"template/{self.name}.c", "r") as template:
-            lines = template.readlines()
-
-        with open(f"output/{self.name}.c", "w") as f:
-            for l in lines:
-                print(l.format(**mapping), end="", file=f)
+        mapping.update(MAPPING)
+        return mapping
 
     def __str__(self) -> str:
         return (
@@ -80,23 +86,12 @@ class Map(Operation):
         self.predicate: str = predicate
         self.parse_predicate()
 
-    def generate_acc_code(self):
+    def update_acc_code_mapping(self):
         mapping = {
-            "data_type": "DOUBLE",
-            "init_record": "(DATA_TYPE)-1," * len(FIELD_NAMES),
-            "field_1": FIELD_NAMES[0],
-            "field_2": FIELD_NAMES[1],
-            "field_3": FIELD_NAMES[2],
-            "field_4": FIELD_NAMES[3],
-            "predicate": "r." + self.predicate,
+            "predicate": self.predicate,
         }
-
-        with open(f"template/{self.name}.c", "r") as template:
-            lines = template.readlines()
-
-        with open(f"output/{self.name}.c", "w") as f:
-            for l in lines:
-                print(l.format(**mapping), end="", file=f)
+        mapping.update(MAPPING)
+        return mapping
 
     def parse_predicate(self):
         possible_operations = ["+", "-", "/", "*", "**", "%", "//"]
@@ -125,25 +120,15 @@ class Branch(Operation):
     def parse_predicates(self):
         pass
 
-    def generate_acc_code(self):
+    def update_acc_code_mapping(self):
         out_streams = [f"stream_to_{i}" for i in range(len(self.output_streams))]
         mapping = {
-            "data_type": "DOUBLE",
             "out_streams": ", ".join([f"ADDR {s}" for s in out_streams]),
             "init_record": ",".join(["(DATA_TYPE)-1" for _ in range(len(FIELD_NAMES))]),
-            "field_1": FIELD_NAMES[0],
-            "field_2": FIELD_NAMES[1],
-            "field_3": FIELD_NAMES[2],
-            "field_4": FIELD_NAMES[3],
             "out_stream_logic": f"{self.predicates[0]} ? {out_streams[0]} : {self.predicates[1]} ? {out_streams[1]} : {out_streams[2]}",
         }
-
-        with open(f"template/{self.name}.c", "r") as template:
-            lines = template.readlines()
-
-        with open(f"output/{self.name}.c", "w") as f:
-            for l in lines:
-                print(l.format(**mapping), end="", file=f)
+        mapping.update(MAPPING)
+        return mapping
 
     def __str__(self) -> str:
         return (
@@ -160,28 +145,17 @@ class Merge(Operation):
 
         self.name = "merge"
 
-    def generate_acc_code(self):
+    def update_acc_code_mapping(self):
         num_input_streams = len(self.input_streams)
         in_streams = [f"stream_to_{i}" for i in range(num_input_streams)]
         mapping = {
-            "data_type": "DOUBLE",
             "in_streams": ", ".join([f"ADDR {s}" for s in in_streams]),
             "num_input_streams": num_input_streams,
-            "init_record": ",".join(["(DATA_TYPE)-1" for _ in range(len(FIELD_NAMES))]),
-            "field_1": FIELD_NAMES[0],
-            "field_2": FIELD_NAMES[1],
-            "field_3": FIELD_NAMES[2],
-            "field_4": FIELD_NAMES[3],
             "in_stream_logic": f"i%{num_input_streams}==0 ? {in_streams[0]} : "
             + f"i%{num_input_streams}==1 ? {in_streams[1]} : {in_streams[2]}",
         }
-
-        with open(f"template/{self.name}.c", "r") as template:
-            lines = template.readlines()
-
-        with open(f"output/{self.name}.c", "w") as f:
-            for l in lines:
-                print(l.format(**mapping), end="", file=f)
+        mapping.update(MAPPING)
+        return mapping
 
     def __str__(self) -> str:
         return (
@@ -197,22 +171,9 @@ class ToTable(Operation):
 
         self.name = "to_table"
 
-    def generate_acc_code(self):
-        mapping = {
-            "data_type": "DOUBLE",
-            "init_record": ",".join(["(DATA_TYPE)-1" for _ in range(len(FIELD_NAMES))]),
-            "field_1": FIELD_NAMES[0],
-            "field_2": FIELD_NAMES[1],
-            "field_3": FIELD_NAMES[2],
-            "field_4": FIELD_NAMES[3],
-        }
-
-        with open(f"template/{self.name}.c", "r") as template:
-            lines = template.readlines()
-
-        with open(f"output/{self.name}.c", "w") as f:
-            for l in lines:
-                print(l.format(**mapping), end="", file=f)
+    def update_acc_code_mapping(self):
+        mapping = MAPPING
+        return mapping
 
     def __str__(self) -> str:
         return f"Operation {self.name}\n" + f"\tInput {self.input_streams[0].name}"

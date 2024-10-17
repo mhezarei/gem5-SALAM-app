@@ -5,22 +5,22 @@
 void top(ADDR stream_from, ADDR stream_to) {
   while (1) {
     // initialize record
-    Record r = (struct Record){(DATA_TYPE)-1,(DATA_TYPE)-1,(DATA_TYPE)-1,(DATA_TYPE)-1,};
+    DATA_TYPE timestamp, uid, age, sid;
 
     // read parts
-    r.timestamp = (DATA_TYPE)(*((DATA_TYPE *)stream_from));
-    if (r.timestamp == END_TOKEN) {
+    timestamp = (DATA_TYPE)(*((DATA_TYPE *)stream_from));
+    if (timestamp == END_TOKEN) {
       *((DATA_TYPE *)stream_to) = END_TOKEN;
       return;
     }
-    r.uid = (DATA_TYPE)(*((DATA_TYPE *)stream_from));
-    r.age = (DATA_TYPE)(*((DATA_TYPE *)stream_from));
-    r.sid = (DATA_TYPE)(*((DATA_TYPE *)stream_from));
+    uid = (DATA_TYPE)(*((DATA_TYPE *)stream_from));
+    age = (DATA_TYPE)(*((DATA_TYPE *)stream_from));
+    sid = (DATA_TYPE)(*((DATA_TYPE *)stream_from));
 
-    *((DATA_TYPE *)stream_to) = (DATA_TYPE)r.timestamp;
-    *((DATA_TYPE *)stream_to) = (DATA_TYPE)r.uid;
-    *((DATA_TYPE *)stream_to) = (DATA_TYPE)r.age+3;
-    *((DATA_TYPE *)stream_to) = (DATA_TYPE)r.sid;
+    *((DATA_TYPE *)stream_to) = (DATA_TYPE)timestamp;
+    *((DATA_TYPE *)stream_to) = (DATA_TYPE)uid;
+    *((DATA_TYPE *)stream_to) = (DATA_TYPE)age+3;
+    *((DATA_TYPE *)stream_to) = (DATA_TYPE)sid;
   }
 
   return;

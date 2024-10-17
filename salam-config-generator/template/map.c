@@ -5,22 +5,22 @@
 void top(ADDR stream_from, ADDR stream_to) {{
   while (1) {{
     // initialize record
-    Record r = (struct Record){{{init_record}}};
+    DATA_TYPE {field_1}, {field_2}, {field_3}, {field_4};
 
     // read parts
-    r.{field_1} = (DATA_TYPE)(*((DATA_TYPE *)stream_from));
-    if (r.{field_1} == END_TOKEN) {{
+    {field_1} = (DATA_TYPE)(*((DATA_TYPE *)stream_from));
+    if ({field_1} == END_TOKEN) {{
       *((DATA_TYPE *)stream_to) = END_TOKEN;
       return;
     }}
-    r.{field_2} = (DATA_TYPE)(*((DATA_TYPE *)stream_from));
-    r.{field_3} = (DATA_TYPE)(*((DATA_TYPE *)stream_from));
-    r.{field_4} = (DATA_TYPE)(*((DATA_TYPE *)stream_from));
+    {field_2} = (DATA_TYPE)(*((DATA_TYPE *)stream_from));
+    {field_3} = (DATA_TYPE)(*((DATA_TYPE *)stream_from));
+    {field_4} = (DATA_TYPE)(*((DATA_TYPE *)stream_from));
 
-    *((DATA_TYPE *)stream_to) = (DATA_TYPE)r.{field_1};
-    *((DATA_TYPE *)stream_to) = (DATA_TYPE)r.{field_2};
+    *((DATA_TYPE *)stream_to) = (DATA_TYPE){field_1};
+    *((DATA_TYPE *)stream_to) = (DATA_TYPE){field_2};
     *((DATA_TYPE *)stream_to) = (DATA_TYPE){predicate};
-    *((DATA_TYPE *)stream_to) = (DATA_TYPE)r.{field_4};
+    *((DATA_TYPE *)stream_to) = (DATA_TYPE){field_4};
   }}
 
   return;

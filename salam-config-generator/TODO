@@ -1,4 +1,5 @@
 ☐ Input/Output streams
-☐ Stateless op to accelerator mapping
+✔ Stateless op to accelerator mapping @done(24-10-17 13:03)
 ☐ Table configuration (storage & requirement)
 ☐ Lexer
+☐ Config.yml generation
