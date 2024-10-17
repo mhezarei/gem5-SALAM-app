@@ -15,7 +15,7 @@ class Stream:
     def __str__(self) -> str:
         return (
             f"Stream {self.name}: "
-            + f"From {None if not self.input else self.input.get_name()} "
-            + f"To {None if not self.output else self.output.get_name()}; "
+            + f"From {None if not self.input else self.input.name} "
+            + f"To {None if not self.output else self.output.name}; "
             + f"width={self.width}B size={self.size}B"
         )

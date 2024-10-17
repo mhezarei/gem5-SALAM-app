@@ -39,9 +39,6 @@ class Operation:
     def add_output_stream(self, out_stream):
         self.output_streams.append(out_stream)
 
-    def get_name(self) -> str:
-        return self.name
-
     def __str__(self) -> str:
         assert self.name, "Operations still doesn't have a name"
         return f"Template Operation {self.name}"
@@ -51,7 +48,7 @@ class Reader(Operation):
     def __init__(self, source_name):
         super().__init__()
 
-        self.name = "reader"
+        self.name = self.acc_name = "reader"
         self.source_name: str = source_name
 
     def update_acc_code_mapping(self):
@@ -73,7 +70,7 @@ class Filter(Operation):
     def __init__(self, predicate):
         super().__init__()
 
-        self.name = "filter"
+        self.name = self.acc_name = "filter"
         self.predicate: str = predicate
         self.parse_predicate()
 
@@ -104,7 +101,7 @@ class Map(Operation):
     def __init__(self, predicate):
         super().__init__()
 
-        self.name = "map"
+        self.name = self.acc_name = "map"
         self.predicate: str = predicate
         self.parse_predicate()
 
@@ -135,7 +132,7 @@ class Branch(Operation):
     def __init__(self, predicates):
         super().__init__()
 
-        self.name = "branch"
+        self.name = self.acc_name = "branch"
         self.predicates: List[str] = predicates
         self.parse_predicates()
 
@@ -165,7 +162,7 @@ class Merge(Operation):
     def __init__(self):
         super().__init__()
 
-        self.name = "merge"
+        self.name = self.acc_name = "merge"
 
     def update_acc_code_mapping(self):
         num_input_streams = len(self.input_streams)
@@ -191,7 +188,7 @@ class ToTable(Operation):
     def __init__(self):
         super().__init__()
 
-        self.name = "to_table"
+        self.name = self.acc_name = "to_table"
 
     def update_acc_code_mapping(self):
         mapping = MAPPING
