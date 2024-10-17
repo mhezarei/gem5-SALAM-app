@@ -24,11 +24,6 @@ def read_algo_file():
     return lines
 
 
-def find_stream_output(sn: str):
-
-    pass
-
-
 def process_one_instruction(inst: str):
     # TODO: need a lexer
     inst = inst.replace("(", " ").replace(")", " ")
@@ -42,10 +37,8 @@ def process_one_instruction(inst: str):
     # process right hand side
     operation_name = rhs[0]
     op = None
-    if operation_name == "SourceStream":
-        # TODO: complete source stream
-        op = Operation()
-        op.name = "source"
+    if operation_name == "Reader":
+        op = Reader(rhs[1].replace('"', ""))
     elif operation_name == "filter":
         predicate = rhs[2]
         op = Filter(predicate)
@@ -181,11 +174,8 @@ def process_algo(statements: List[str]):
 
     print("=================================================================")
 
-    operations[1].generate_acc_code()
-    operations[2].generate_acc_code()
-    operations[3].generate_acc_code()
-    operations[4].generate_acc_code()
-    operations[5].generate_acc_code()
+    for op in operations:
+        op.generate_acc_code()
 
     generate_config()
 

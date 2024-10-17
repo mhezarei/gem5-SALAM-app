@@ -47,6 +47,28 @@ class Operation:
         return f"Template Operation {self.name}"
 
 
+class Reader(Operation):
+    def __init__(self, source_name):
+        super().__init__()
+
+        self.name = "reader"
+        self.source_name: str = source_name
+
+    def update_acc_code_mapping(self):
+        mapping = {
+            "source_name": self.source_name,
+        }
+        mapping.update(MAPPING)
+        return mapping
+
+    def __str__(self) -> str:
+        return (
+            f"Operation {self.name}\n"
+            + f"\tSource {self.source_name}\n"
+            + f"\tOutput {self.output_streams[0].name}"
+        )
+
+
 class Filter(Operation):
     def __init__(self, predicate):
         super().__init__()

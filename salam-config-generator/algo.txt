@@ -1,5 +1,5 @@
 # clicks: timestamp | uid | age | sid
-Stream click_events = SourceStream("clicks")
+Stream click_events = Reader("clicks")
 
 # filter users older than 15 y.o.
 Stream filtered_click_events = filter(click_events, age<15)

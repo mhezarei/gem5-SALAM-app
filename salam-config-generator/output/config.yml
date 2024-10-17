@@ -21,9 +21,9 @@ acc_cluster:
       Debug: False
 
   - Accelerator:
-    - Name: source
-      IrPath: hw/source.ll
-      ConfigPath: hw/source.ini
+    - Name: reader
+      IrPath: hw/reader.ll
+      ConfigPath: hw/reader.ini
       PIOSize: 4096
       PIOMaster: LocalBus
       LocalSlaves: LocalBus
@@ -33,7 +33,7 @@ acc_cluster:
         Type: Stream
         StreamSize: 8
         BufferSize: 80
-        InCon: source
+        InCon: reader
         OutCon: filter
         ports: 10
   
@@ -133,7 +133,7 @@ acc_cluster:
 
 
 hw_config:
-  source:
+  reader:
   filter:
   map:
   branch:
