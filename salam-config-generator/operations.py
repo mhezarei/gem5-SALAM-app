@@ -169,7 +169,7 @@ class Merge(Operation):
 
     def update_acc_code_mapping(self):
         num_input_streams = len(self.input_streams)
-        in_streams = [f"stream_to_{i}" for i in range(num_input_streams)]
+        in_streams = [f"stream_from_{i}" for i in range(num_input_streams)]
         mapping = {
             "in_streams": ", ".join([f"ADDR {s}" for s in in_streams]),
             "num_input_streams": num_input_streams,

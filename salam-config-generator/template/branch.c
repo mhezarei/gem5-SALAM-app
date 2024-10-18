@@ -13,15 +13,22 @@ void top(ADDR stream_from, {out_streams}) {{
 {end_stream_statements}
       return;
     }}
+    asm volatile("HASHEMI");
     {field_2} = (DATA_TYPE)(*((DATA_TYPE *)stream_from));
+    asm volatile("HASHEMI");
     {field_3} = (DATA_TYPE)(*((DATA_TYPE *)stream_from));
+    asm volatile("HASHEMI");
     {field_4} = (DATA_TYPE)(*((DATA_TYPE *)stream_from));
+    asm volatile("HASHEMI");
 
     ADDR stream_to = {out_stream_logic};
 
     *((DATA_TYPE *)stream_to) = (DATA_TYPE){field_1};
+    asm volatile("HASHEMI");
     *((DATA_TYPE *)stream_to) = (DATA_TYPE){field_2};
+    asm volatile("HASHEMI");
     *((DATA_TYPE *)stream_to) = (DATA_TYPE){field_3};
+    asm volatile("HASHEMI");
     *((DATA_TYPE *)stream_to) = (DATA_TYPE){field_4};
   }}
 
