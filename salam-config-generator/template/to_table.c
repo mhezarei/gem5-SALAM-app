@@ -8,7 +8,7 @@ void top(ADDR stream_from, ADDR table_to) {{
 
     {field_1} = (DATA_TYPE)(*((DATA_TYPE *)stream_from));
     if ({field_1} == END_TOKEN) {{
-      *((DATA_TYPE *)stream_to) = END_TOKEN;
+      *((DATA_TYPE *)table_to) = END_TOKEN;
       return;
     }}
     {field_2} = (DATA_TYPE)(*((DATA_TYPE *)stream_from));

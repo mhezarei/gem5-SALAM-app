@@ -73,10 +73,9 @@ def process_one_instruction(inst: str):
 
     # process left hand side
     if lhs[0] == "Stream":
-        # TODO: check for duplicate stream names
         stream_names = lhs[1:]
         for sn in stream_names:
-            s = Stream(sn, 8, 80)
+            s = Stream(len(streams) + 1, sn, 8, 80)
             s.set_input_operation(op)
             op.add_output_stream(s)
             streams.append(s)
@@ -94,7 +93,7 @@ def generate_config():
         mapping[
             "accelerators"
         ] += f"""  - Accelerator:
-    - Name: {op.name}
+    - Name: {op.acc_name}
       IrPath: hw/{op.name}.ll
       ConfigPath: hw/{op.name}.ini
       PIOSize: 4096

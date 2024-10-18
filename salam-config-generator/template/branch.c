@@ -10,7 +10,7 @@ void top(ADDR stream_from, {out_streams}) {{
     // read parts
     {field_1} = (DATA_TYPE)(*((DATA_TYPE *)stream_from));
     if ({field_1} == END_TOKEN) {{
-      *((DATA_TYPE *)stream_to) = END_TOKEN;
+{end_stream_statements}
       return;
     }}
     {field_2} = (DATA_TYPE)(*((DATA_TYPE *)stream_from));

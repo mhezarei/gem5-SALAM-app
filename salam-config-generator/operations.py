@@ -5,7 +5,7 @@ from stream import Stream
 # TODO: automate this
 FIELD_NAMES = ["timestamp", "uid", "age", "sid"]
 MAPPING = {
-    "data_type": "DOUBLE",
+    "data_type": "uint64_t",
     "field_1": FIELD_NAMES[0],
     "field_2": FIELD_NAMES[1],
     "field_3": FIELD_NAMES[2],
@@ -145,6 +145,9 @@ class Branch(Operation):
             "out_streams": ", ".join([f"ADDR {s}" for s in out_streams]),
             "init_record": ",".join(["(DATA_TYPE)-1" for _ in range(len(FIELD_NAMES))]),
             "out_stream_logic": f"{self.predicates[0]} ? {out_streams[0]} : {self.predicates[1]} ? {out_streams[1]} : {out_streams[2]}",
+            "end_stream_statements": "\n".join(
+                [f"\t\t\t*((DATA_TYPE *){s}) = END_TOKEN;" for s in out_streams]
+            ),
         }
         mapping.update(MAPPING)
         return mapping

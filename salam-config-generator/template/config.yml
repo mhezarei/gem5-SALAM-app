@@ -23,6 +23,7 @@ acc_cluster:
 {accelerators}
 
 hw_config:
+  top:
 {accelerator_names}
     instructions:
       add:
