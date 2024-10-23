@@ -90,6 +90,7 @@ def generate_config():
 
     for op in operations:
         inputs: List[Stream] = [s for s in streams if op.name == s.input.acc_name]
+        # TODO make debugging easier/more readable
         mapping[
             "accelerators"
         ] += f"""  - Accelerator:
@@ -99,7 +100,7 @@ def generate_config():
       PIOSize: 4096
       PIOMaster: LocalBus
       LocalSlaves: LocalBus
-      Debug: False
+      Debug: True
 """
         for si in inputs:
             mapping[

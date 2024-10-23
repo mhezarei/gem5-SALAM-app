@@ -7,6 +7,7 @@
 volatile uint8_t *top = (uint8_t *)(TOP);
 volatile UINT *ADDR_CLICKS = (volatile UINT *)(TOP + 1);
 volatile UINT *ADDR_TABLE = (volatile UINT *)(TOP + 9);
+volatile UINT *TOP_BS = (volatile UINT *)(TOP + 17);
 
 void loadConfig() {
   Record *clicks = (Record *)(BASE + CLICKS_OFFSET);

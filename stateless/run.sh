@@ -2,7 +2,7 @@
 
 set -e
 
-FLAGS="HWACC,WindowManager"
+FLAGS="HWACC"
 BENCH="stateless"
 DEBUG="false"
 PRINT_TO_FILE="false"

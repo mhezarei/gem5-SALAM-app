@@ -9,9 +9,9 @@ void top(ADDR stream_from, {out_streams}) {{
 
     // read parts
     {field_1} = (DATA_TYPE)(*((DATA_TYPE *)stream_from));
+    asm volatile("HASHEMI");
     if ({field_1} == END_TOKEN) {{
-{end_stream_statements}
-      return;
+      break;
     }}
     asm volatile("HASHEMI");
     {field_2} = (DATA_TYPE)(*((DATA_TYPE *)stream_from));
@@ -30,7 +30,10 @@ void top(ADDR stream_from, {out_streams}) {{
     *((DATA_TYPE *)stream_to) = (DATA_TYPE){field_3};
     asm volatile("HASHEMI");
     *((DATA_TYPE *)stream_to) = (DATA_TYPE){field_4};
+    asm volatile("HASHEMI");
   }}
+
+{end_stream_statements}
 
   return;
 }}

@@ -21,7 +21,7 @@ void top(ADDR stream_from, ADDR stream_to) {
     sid = (DATA_TYPE)(*((DATA_TYPE *)stream_from));
     asm volatile("HASHEMI");
 
-    if (age<15) {
+    if (age>30) {
       *((DATA_TYPE *)stream_to) = (DATA_TYPE)timestamp;
       asm volatile("HASHEMI");
       *((DATA_TYPE *)stream_to) = (DATA_TYPE)uid;

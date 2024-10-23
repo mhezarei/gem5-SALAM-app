@@ -2,13 +2,13 @@
 Stream click_events = Reader("clicks")
 
 # filter users older than 15 y.o.
-Stream filtered_click_events = filter(click_events, age<15)
+Stream filtered_click_events = filter(click_events, age>30)
 
 # increase age by 3
-Stream mapped_click_events = map(filtered_click_events, age+3)
+Stream mapped_click_events = map(filtered_click_events, age*3)
 
 # create three new streams based on predicates
-Stream low_click_events, mid_click_events, default_click_events = branch(mapped_click_events, age<20, age<30)
+Stream low_click_events, mid_click_events, default_click_events = branch(mapped_click_events, age<100, age<120)
 
 # merge all three streams
 Stream merged_click_events = merge(low_click_events, mid_click_events, default_click_events)

@@ -27,7 +27,7 @@ acc_cluster:
       PIOSize: 4096
       PIOMaster: LocalBus
       LocalSlaves: LocalBus
-      Debug: False
+      Debug: True
     - Var:
       - Name: STREAM_CLICK_EVENTS
         Type: Stream
@@ -44,7 +44,7 @@ acc_cluster:
       PIOSize: 4096
       PIOMaster: LocalBus
       LocalSlaves: LocalBus
-      Debug: False
+      Debug: True
     - Var:
       - Name: STREAM_FILTERED_CLICK_EVENTS
         Type: Stream
@@ -61,7 +61,7 @@ acc_cluster:
       PIOSize: 4096
       PIOMaster: LocalBus
       LocalSlaves: LocalBus
-      Debug: False
+      Debug: True
     - Var:
       - Name: STREAM_MAPPED_CLICK_EVENTS
         Type: Stream
@@ -78,7 +78,7 @@ acc_cluster:
       PIOSize: 4096
       PIOMaster: LocalBus
       LocalSlaves: LocalBus
-      Debug: False
+      Debug: True
     - Var:
       - Name: STREAM_LOW_CLICK_EVENTS
         Type: Stream
@@ -111,7 +111,7 @@ acc_cluster:
       PIOSize: 4096
       PIOMaster: LocalBus
       LocalSlaves: LocalBus
-      Debug: False
+      Debug: True
     - Var:
       - Name: STREAM_MERGED_CLICK_EVENTS
         Type: Stream
@@ -128,7 +128,7 @@ acc_cluster:
       PIOSize: 4096
       PIOMaster: LocalBus
       LocalSlaves: LocalBus
-      Debug: False
+      Debug: True
   
 
 

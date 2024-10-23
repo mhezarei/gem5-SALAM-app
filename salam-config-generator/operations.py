@@ -146,7 +146,7 @@ class Branch(Operation):
             "init_record": ",".join(["(DATA_TYPE)-1" for _ in range(len(FIELD_NAMES))]),
             "out_stream_logic": f"{self.predicates[0]} ? {out_streams[0]} : {self.predicates[1]} ? {out_streams[1]} : {out_streams[2]}",
             "end_stream_statements": "\n".join(
-                [f"\t\t\t*((DATA_TYPE *){s}) = END_TOKEN;" for s in out_streams]
+                [f"\t*((DATA_TYPE *){s}) = END_TOKEN;" for s in out_streams]
             ),
         }
         mapping.update(MAPPING)

@@ -3,10 +3,11 @@ import numpy as np
 import gc
 import os, psutil
 import struct
+from pprint import pprint
 
 
-random.seed(0)
-LENGTH = 1000
+random.seed(2)
+LENGTH = 100
 FIELDS = ["timestamp", "uid", "age", "sid"]
 CURRENT_TIMESTAMP = 1729280602
 
@@ -28,4 +29,9 @@ values = [
     )
     for i in range(LENGTH)
 ]
-to_bin(values, "values_1000.bin")
+# pprint(values)
+# to_bin(values, "data/values.bin")
+
+f = [v for v in values if v[2] > 30]
+print(f)
+print(len([tup for tup in [(v[0], v[1], v[2] * 3, v[3]) for v in f] if 100 <= tup[2] < 120]))

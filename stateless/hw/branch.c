@@ -9,11 +9,9 @@ void top(ADDR stream_from, ADDR stream_to_0, ADDR stream_to_1, ADDR stream_to_2)
 
     // read parts
     timestamp = (DATA_TYPE)(*((DATA_TYPE *)stream_from));
+    asm volatile("HASHEMI");
     if (timestamp == END_TOKEN) {
-			*((DATA_TYPE *)stream_to_0) = END_TOKEN;
-			*((DATA_TYPE *)stream_to_1) = END_TOKEN;
-			*((DATA_TYPE *)stream_to_2) = END_TOKEN;
-      return;
+      break;
     }
     asm volatile("HASHEMI");
     uid = (DATA_TYPE)(*((DATA_TYPE *)stream_from));
@@ -23,7 +21,7 @@ void top(ADDR stream_from, ADDR stream_to_0, ADDR stream_to_1, ADDR stream_to_2)
     sid = (DATA_TYPE)(*((DATA_TYPE *)stream_from));
     asm volatile("HASHEMI");
 
-    ADDR stream_to = age<20 ? stream_to_0 : age<30 ? stream_to_1 : stream_to_2;
+    ADDR stream_to = age<100 ? stream_to_0 : age<120 ? stream_to_1 : stream_to_2;
 
     *((DATA_TYPE *)stream_to) = (DATA_TYPE)timestamp;
     asm volatile("HASHEMI");
@@ -32,7 +30,12 @@ void top(ADDR stream_from, ADDR stream_to_0, ADDR stream_to_1, ADDR stream_to_2)
     *((DATA_TYPE *)stream_to) = (DATA_TYPE)age;
     asm volatile("HASHEMI");
     *((DATA_TYPE *)stream_to) = (DATA_TYPE)sid;
+    asm volatile("HASHEMI");
   }
+
+	*((DATA_TYPE *)stream_to_0) = END_TOKEN;
+	*((DATA_TYPE *)stream_to_1) = END_TOKEN;
+	*((DATA_TYPE *)stream_to_2) = END_TOKEN;
 
   return;
 }

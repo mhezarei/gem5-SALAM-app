@@ -21,13 +21,20 @@ void top(ADDR stream_from, ADDR stream_to) {{
     {field_4} = (DATA_TYPE)(*((DATA_TYPE *)stream_from));
     asm volatile("HASHEMI");
 
+    DATA_TYPE x = {predicate};
+
     *((DATA_TYPE *)stream_to) = (DATA_TYPE){field_1};
     asm volatile("HASHEMI");
     *((DATA_TYPE *)stream_to) = (DATA_TYPE){field_2};
     asm volatile("HASHEMI");
-    *((DATA_TYPE *)stream_to) = (DATA_TYPE){predicate};
+    *((DATA_TYPE *)stream_to) = x;
     asm volatile("HASHEMI");
+
+    while (*((uint8_t *)(stream_to + 64)) > 0) ;
+    asm volatile("HASHEMI");
+    
     *((DATA_TYPE *)stream_to) = (DATA_TYPE){field_4};
+    asm volatile("HASHEMI");
   }}
 
   return;

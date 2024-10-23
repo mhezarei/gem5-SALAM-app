@@ -21,13 +21,20 @@ void top(ADDR stream_from, ADDR stream_to) {
     sid = (DATA_TYPE)(*((DATA_TYPE *)stream_from));
     asm volatile("HASHEMI");
 
+    DATA_TYPE x = age*3;
+
     *((DATA_TYPE *)stream_to) = (DATA_TYPE)timestamp;
     asm volatile("HASHEMI");
     *((DATA_TYPE *)stream_to) = (DATA_TYPE)uid;
     asm volatile("HASHEMI");
-    *((DATA_TYPE *)stream_to) = (DATA_TYPE)age+3;
+    *((DATA_TYPE *)stream_to) = x;
     asm volatile("HASHEMI");
+
+    while (*((uint8_t *)(stream_to + 64)) > 0) ;
+    asm volatile("HASHEMI");
+    
     *((DATA_TYPE *)stream_to) = (DATA_TYPE)sid;
+    asm volatile("HASHEMI");
   }
 
   return;
